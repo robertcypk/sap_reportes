@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<meta name="author" content="Brainred">
+		<link rel="shortcut icon" href="{{ asset('assets/images/favicon_1.ico') }}">
+		<title>Reporte - {{report.title|default('Marketing SAP')}}</title>
+		
+		<link href="{{ asset('assets/css/report/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+		<link href="{{ asset('assets/css/report/core.css') }}" rel="stylesheet" type="text/css" />
+		{# <link href="{{ asset('css/report/components.css') }}" rel="stylesheet" type="text/css" /> #}
+		{# <link href="{{ asset('css/report/icons.css') }}" rel="stylesheet" type="text/css" /> #}
+		{# <link href="{{ asset('css/report/pages.css') }}" rel="stylesheet" type="text/css" />  #}
+		{# <link href="{{ asset('css/report/jquery.circliful.css') }}" rel="stylesheet" type="text/css" /> #}
+		
+		{# <!-- <link href="{{ asset('css/report/responsive.css') }}" rel="stylesheet" type="text/css" /> --> #}
+		{# <link href="{{ asset('css/report/fonts.css') }}" rel="stylesheet" type="text/css" media="all"/> #}
+		{# <link href="{{ asset('css/report/main.css') }}" rel="stylesheet" type="text/css" media="all"/> #}
+		{# <link href="{{ asset('css/buttons.dataTables.min.css') }}" rel="stylesheet" type="text/css" />
+		<link href="{{ asset('css/dataTables.responsive.css') }}" rel="stylesheet" type="text/css" /> #}
+		
+		{# <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css"/> #}
+		{# <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.1/css/responsive.dataTables.min.css"/> #}
+		
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-2201948-49"></script>
+		<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'UA-2201948-49');
+		</script>
+
+	
+	</head>
+	<body>
+	{% if report is not empty  %}
+		<div class="container " style="width: 1170px-;">
+			<div class="container">
+				<!--Tooltips-->
+            {# <div class="panel panel-default">
+              <div class="panel-heading panel-heading-divider">Managers<span class="panel-subtitle">Configuring managers for regions</span></div>
+              <div class="panel-body">
+                  <a href="{{ path('datareports') }}" data-type="new" data-toggle="tooltip" data-placement="right" data-container="body" title="New manager" class="btn btn-secondary btn-space user_form">
+                    <span class="icon  icon-plus "> </span> REGISTER NEW MANAGER
+                  </a>
+              </div>
+            </div> #}
+			<h1 class="text-primary"> <b>{{report.title}}</b></h1>
+			<ul>
+			<li>Categoria: <b>  {% if report.category == '1' %}
+							Marketing Academy
+							{% elseif report.category == '2' %}
+							Meet the Expert
+							{% else %}
+							Social Monday
+							{% endif %} </b> 
+							</li>
+					<li>{{traduccion("Fecha de registro", "Data de registro")}}:<b>  {{report.date|date('d/m/Y')}}</b> </li>
+
+					</ul>
+				<!-- ========== START DATA TABLE  ========== -->
+				<div class="row">
+					<div class="col-sm-12">
+					 <div class="panel panel-default panel-table">
+					  <div class="panel-heading"><span class="badge" style="vertical-align: text-bottom;">{{data|length}}</span> {{traduccion("USUARIOS REGISTRADOS", "USUÁRIOS REGISTRADOS")}}
+					  </div>
+					  <div class="panel-body panel-list">
+						<table id="table3" class="table table-hover">
+						  <thead>
+							<tr>
+							  	<th class="desktop tablet"> {{traduccion("Nombre", "Nome")}}</th>
+							  	<th class="desktop tablet">{{traduccion("Apellidos", "Sobrenome")}}</th>
+								<th class="desktop tablet" >Email</th>
+								<th class="none">{{traduccion("Relación con SAP", "Relacionamento com SAP")}}</th>
+								<th class="desktop">{{traduccion("Empresa", "Companhia")}}</th>
+								<th class="desktop">{{traduccion("Industria", "Indústria")}}</th>
+								<th >{{traduccion("Cargo", "Cargo")}}</th>
+								<th class="none">{{traduccion("Teléfono", "Telefone")}}</th>
+								<th >{{traduccion("Ciudad", "Cidade")}}</th>
+								<th>{{traduccion("Pais", "País")}}</th>
+								<th >{{traduccion("Asistencia", "Assistência")}}</th>
+								<th class="none">{{traduccion("¿En qué área trabaja?", "Em qual área trabalha?")}}</th>
+							  	<th class="none">{{traduccion("¿Desea ser invitado al grupo de JAM de Marketing Academy?", "Deseja ser convidado ao grupo do Marketing Academy no JAM?")}}</th>
+								<th class="none">{{traduccion("¿Conoce el programa de entrenamientos del año?", "Conhece o programa de treinamentos de parceiros da SAP?")}}</th>
+								<th class="none">{{traduccion("¿Cree que este entrenamiento será de utilidad para su trabajo?", "Você acha que este webinar será útil para o seu trabalho?")}}</th>
+								<th class="none">{{traduccion("¿Cómo califica el entrenamiento?", "Como você classifica este treinamento?")}}</th>
+								<th class="none">{{traduccion("¿Cuál es su categoría de partner?", "Qual é a sua categoria de parceiro?")}}</th>
+							</tr>
+						  </thead>
+						  <tbody>
+							{% for key, value in data %}
+							<tr>
+							<td class="no-wrap">{{value.Nombre}}</td>
+							<td class="no-wrap">{{value.Apellido}}  </td>
+							<td class="no-wrap">{{value.Email}}</td>
+							<td>{{value.Relacinconsap}}</td>
+							<td class="no-wrap">{{value.Empresa}}</td>
+							<td class="no-wrap">{{value.Industria}}</td>
+							<td class="no-wrap">{{value.Cargo}}</td>
+							<td>{{value.Telfonodelaempresa}}</td>
+							<td>{{value.Ciudad}}</td>
+							<td>{{value.Pais}}</td>
+							<td>{{value.Attendedlive}}</td>
+							<td>{{value.Pregunta1}}</td>
+							<td>{{value.Pregunta2}}</td>
+							<td>{{value.Pregunta3}}</td>
+							<td>{{value.Pregunta4}}</td>
+							<td>{{value.Pregunta5}}</td>
+							<td>{{value.Pregunta6}}</td>							 
+							</tr>
+							{% endfor %}
+						  </tbody>
+						</table>
+						
+						
+							  
+					  </div>
+					</div>
+					</div>
+				</div>
+				<!-- ========== EN DATA TABLE  ========== -->
+			</div>
+
+
+
+				</div>
+		
+		<script src="{{ asset('js/jquery.min.js') }}"></script>		
+		{#<script src="{{ asset('js/jspdf.min.js') }}"></script>
+		<script src="{{ asset('js/html2canvas.js') }}"></script>
+		<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+		<script src="{{ asset('js/Chart.js') }}"></script>
+		<script src="{{ asset('js/jquery.circliful.min.js') }}"></script>
+				
+		<script src="{{ asset('js/jquery.core.js') }}"></script>
+	<!-- <script src="{{ asset('js/jquery.app.js') }}"></script> -->
+#}
+
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"/>
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css"/>
+<script type="text/javascript" src="//code.jquery.com/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="//cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="//cdn.datatables.net/buttons/1.5.2/js/buttons.flash.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+<script type="text/javascript" src="//cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+<script type="text/javascript" src="//cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
+<script type="text/javascript" src="//cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
+<script type="text/javascript" src="//cdn.datatables.net/plug-ins/1.10.12/sorting/datetime-moment.js"></script>
+<style>
+	h1 {color:red;}
+
+	/* table.dataTable tbody th .no-wrap,  */
+	table.dataTable tbody td.no-wrap {
+		max-width: 140px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+</style>
+<script>
+	
+
+$(document).ready(function(){
+	
+});
+
+$(function() {
+    var fecha = new Date().toLocaleString();
+    var url = typeof urlSite != 'undefined' ? urlSite : "/";
+
+    function getFecha() {
+        var d = new Date();
+        return ("0" + d.getDate()).slice(-2) + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + d.getFullYear() + "_" + ("0" + d.getHours()).slice(-2) + "-" + ("0" + d.getMinutes()).slice(-2);
+    }
+
+    function getHora() {
+        var d = new Date();
+        return ("0" + d.getHours()).slice(-2) + "-" + ("0" + d.getMinutes()).slice(-2);
+    }
+
+    //We use this to apply style to certain elements/*
+    $.extend(true, $.fn.dataTable.defaults, {
+        dom: "<'row mai-datatable-header'<'col-sm-6'l><'col-sm-6'f>>" +
+            "<'row mai-datatable-body'<'col-sm-12'tr>>" +
+            "<'row mai-datatable-footer'<'col-sm-5'i><'col-sm-7'p>>"
+    });
+
+    $.extend($.fn.dataTable.ext.classes, {
+        sFilterInput: "form-control form-control-sm",
+        sLengthSelect: "form-control form-control-sm",
+    });
+
+    $.fn.dataTable.moment('HH:mm A DD/MM/YYYY');
+    $.fn.dataTable.moment('DD/MM/YYYY HH:mm A');
+    $.fn.dataTable.moment('DD/MM/YYYY');
+
+    $("#table1").dataTable();
+
+    //Enable toolbar button functions
+    $("#table3").dataTable({
+        "responsive": true,
+        "ordering": true,
+        "language": {
+            "search": "Buscar",
+            "emptyTable": "Sin resultados disponibles"
+        },
+        "autoWidth": false,
+        // "order": false,
+        "order": [
+            [1, "desc"]
+        ],
+        "bSort": false,
+        bFilter: false,
+
+        "columnDefs": [
+            { orderable: false, targets: -1 }
+            // { responsivePriority: 1, targets: 0 },
+            // { responsivePriority: 2, targets: -5 }
+            // { targets: 9, type:  'datetime', def: function () { return new Date() },
+            // format: 'YYYY-MM-DD h:mm A'}
+        ],
+        paging: false,
+        buttons: [{
+                extend: 'excel',
+                text: 'Descargar reporte Excel',
+                className: 'btn btn-space btn-success btn-sm hover',
+                init: function(api, node, config) {
+                    $(node).removeClass('dt-button')
+                },
+                filename: function() {
+                    var f = ($("#date1").length != null) ? $("#date1").val() + "_" + getHora() : getFecha();
+                    return document.title.replace(/ /g, "_") + "__" + f;
+                },
+            },
+            {
+                extend: 'copy',
+                text: 'Copiar',
+                className: 'btn btn-space btn-success btn-sm hover',
+                init: function(api, node, config) {
+                    $(node).removeClass('dt-button')
+                }
+            },
+            {
+                extend: 'print',
+                text: 'Imprimir',
+                className: 'btn btn-space btn-success btn-sm hover',
+                init: function(api, node, config) {
+                    $(node).removeClass('dt-button')
+                }
+            }
+        ],
+
+        dom: "<'row mai-datatable-header'<'col-sm-6'B><'col-sm-6 text-right'f>>" +
+            "<'row mai-datatable-body'<'col-sm-12'tr>>"
+            // "<'row mai-datatable-footer'<'col-sm-5'i><'col-sm-7'p>>"
+    });
+
+})
+
+
+
+
+</script>
+{% endif %}
+	</body>
+</html>

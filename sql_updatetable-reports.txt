@@ -1,0 +1,24 @@
+update importuser i 
+inner join reports r on r.slug = i.Slug and r.lang = 2
+set i.Slug = r.id
+where i.Idioma = 'pr'
+where i.Slug = 'BASHOProspectedeModoInfalible'
+=============================================================
+select * from importuser where Idioma = 'pr' group by slug
+=============================================================
+update reports r
+set r.cant = (select count(*) from importuser i where i.Slug = r.id);
+=============================================================
+INSERT INTO `importuser` ( `Titulo`, `Idioma`, `Categoria`, `Nombre`, `Apellido`, `Email`, `Relacionconsap`, `Empresa`, `Industria`, `Cargo`, `Telefonodelaempresa`, `Ciudad`, `Pais`, `Attendedlive`, `Pregunta1`, `Pregunta2`, `Pregunta3`, `Pregunta4`, `Pregunta5`, `Pregunta6`, `Pregunta7`, `Pregunta8`, `Fecha`, `Slug`)
+SELECT  `Titulo`, `Idioma`, `Categoria`, `Nome`, `Sobrenome`, `Email`, `Relaccedilaocomasap`, `Empresa`, `Industria`, `Cargo`, `Telefone`, `Cidade`, `Pais`, `Attendedlive`, `Pregunta1`, `Pregunta2`, `Pregunta3`, `Pregunta4`, `Pregunta5`, `Pregunta6`, `Pregunta7`, `Pregunta8`, `Fecha`, `Slug`
+FROM importuserpr 
+
+************************************************
+61 registrso ESP
+56 registros PORT
+117 registros 
+
+*************************
+15621 port
+8297 esp
+23,918‬ total registros esp y port

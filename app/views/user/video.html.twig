@@ -1,0 +1,76 @@
+
+{% extends "layouts/master-user.html.twig" %}
+{% block title %} SAP Administrador - Usuarios Registrados {% endblock %}
+{% block body %}
+ 
+
+    <main role="main">
+
+        <section class="jumbotron- bg_page text-center- p-5">
+            <div class="container main-title py-2">
+
+            <ul class="bread">
+                <li><a href="{{ path('publicroute') }}">{{traduccion('Portada','Home')}}</a></li>
+                <li><span class="text-white"> {{traduccion('Sesiones grabadas ','Sessões gravadas')}}</span></li>
+            </ul>
+            <h2>Webinars {#<span class="font-light ">SAP Marketing Academy</span>#}</h2>
+            {# <div class="icon-main-title">
+                <img src="{{ asset('public/v2/img/training-white.png') }}" alt="SAP" width="170">
+            </div>                 #}
+            </div>
+                </section>
+                            <div class="container my-5">
+                           
+                              
+                            <div class="row">
+
+
+
+                                <div class="col-lg-12">
+                                    <div class="bs-callout bs-callout-danger mt-3" >
+                                         {% if r is not empty  %}
+                                         {% set idvideo = r.video|slice(-11) %}
+                                        <h2 class="font_strong- text-cyan mb-4">{{ r.title }} </h2>
+                                        {# <p class="card-text text-grey">Registro de participación en los webinars de entrenamiento que SAP reconoce con el certificado personal.</p> #}
+                                       <div class="zone-video ">
+                                       
+                                            <div class="plyr__video-embed" id="player">
+                                                    <iframe
+                                                        src="https://www.youtube.com/embed/{{ idvideo }}?origin=https://plyr.io&amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1"
+                                                        allowfullscreen
+                                                        allowtransparency
+                                                        allow="autoplay"
+                                                    ></iframe>
+                                                </div>
+
+                                        </div>
+                                        {% else %}
+                                        <h3 class="text-black"><span class="text-red">Webinar no registrado:</span> Probablemente ha sido eliminado. </h3>
+                                        {% endif %}
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    </main>
+
+    
+{% endblock %}
+
+{% block javascript %}
+<link rel="stylesheet" href="https://cdn.plyr.io/3.6.2/plyr.css" />
+<script src="https://cdn.plyr.io/3.6.2/plyr.js"></script>
+
+<script>
+{# {% set token = app.session.get("token") %} #}
+const player = new Plyr('#player', {
+  /* options */
+});
+
+element.addEventListener('ready', event => {
+  const player = event.detail.plyr;
+});
+player.play(); // Start playback
+player.fullscreen.enter(); // Enter fullscreen
+</script>
+{% endblock %}

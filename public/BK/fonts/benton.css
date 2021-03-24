@@ -1,0 +1,20 @@
+@font-face {
+	font-family: 'BentonSansLight';
+	src: url('Benton/BentonSansLight.otf');
+	font-weight: 100;
+}
+@font-face {
+	font-family: 'BentonSansRegular';
+	src: url('Benton/BentonSansRegular.otf');
+	font-weight: 100;
+}
+@font-face {
+	font-family: 'BentonSansMedium';
+	src: url('Benton/BentonSansMedium.otf');
+	font-weight: 100;
+}
+@font-face {
+	font-family: 'BentonSansBold';
+	src: url('Benton/BentonSansBold.otf');
+	font-weight: 100;
+}

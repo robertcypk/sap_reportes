@@ -1,0 +1,83 @@
+#config/doctrine/Entity.Importuser.dcm.yml
+Entity\Importuser:
+    type: entity
+    table: importuser
+    fields:
+        idoption :
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        Titulo:
+            type: text
+            nullable: true
+        Idioma:
+            type: text
+            nullable: true
+        Categoria:
+            type: text
+            nullable: true
+        Nombre:
+            type: text
+            nullable: true
+        Apellido:
+            type: text
+            nullable: true
+        Email:
+            type: text
+            nullable: true
+        Relacionconsap:
+            type: text
+            nullable: true
+        Empresa:
+            type: text
+            nullable: true
+        Industria:
+            type: text
+            nullable: true
+        Cargo:
+            type: text
+            nullable: true
+        Telefonodelaempresa:
+            type: text
+            nullable: true
+        Ciudad:
+            type: text
+            nullable: true
+        Pais:
+            type: text
+            nullable: true
+        Attendedlive:
+            type: text
+            nullable: true
+        Pregunta1:
+            type: text
+            nullable: true
+        Pregunta2:
+            type: text
+            nullable: true
+        Pregunta3:
+            type: text
+            nullable: true
+        Pregunta4:
+            type: text
+            nullable: true
+        Pregunta5:
+            type: text
+            nullable: true
+        Pregunta6:
+            type: text
+            nullable: true
+        Pregunta7:
+            type: text
+            nullable: true
+        Pregunta8:
+            type: text
+            nullable: true
+        Fecha:
+            type: text
+            nullable: true
+        Idreport:
+            type: integer
+            nullable: false
+    lifecycleCallbacks: {  }

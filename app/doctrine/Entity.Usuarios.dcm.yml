@@ -1,0 +1,43 @@
+#config/doctrine/Entity.Usuarios.dcm.yml
+Entity\Usuarios:
+    type: entity
+    table: usuarios
+    fields:
+        idusr :
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        name:
+            type: string
+            length: 255
+        lastname:
+            type: string
+            length: 255
+        rol:
+            type: string
+            length: 512
+        password:
+            type: string
+            length: 512
+        usuario:
+            type: string
+            length: 512
+        idregion:
+            type: string
+            length: 512
+            nullable: TRUE
+        dateregister:
+            type: string
+            length: 512
+        country:
+            type: string
+            length: 512
+            nullable: TRUE
+        avatar:
+            type: text
+            nullable: TRUE
+        fondo:
+            type: text
+            nullable: TRUE
+    lifecycleCallbacks: {  }

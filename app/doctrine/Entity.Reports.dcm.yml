@@ -1,0 +1,41 @@
+#config/doctrine/Entity.Reports.dcm.yml
+Entity\Reports:
+    type: entity
+    table: reports
+    fields:
+        id :
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        title:
+            type: string
+            length: 255
+        category:
+            type: integer
+            length: 2
+        lang:
+            type: integer
+            length: 2
+        cant:
+            type: integer
+            length: 11
+        slug:
+            type: string
+            length: 255
+        video:
+            type: string
+            length: 55
+        status:
+            type: integer
+            length: 2
+        date:
+            type: string
+            length: 50
+        created_at:
+            type: string
+            length: 50
+        updated_at:
+            type: string
+            length: 50
+    lifecycleCallbacks: {  }

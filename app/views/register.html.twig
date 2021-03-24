@@ -1,0 +1,117 @@
+{% extends "layouts/masterlogin.html.twig" %}
+{% block content %}
+<nav class="navbar navbar-full navbar-inverse navbar-fixed-top mai-top-header">
+  <div class="container"><a href="{{  app.path('index') }}" class="navbar-brand"></a>
+        <!--Left Menu-->
+        <ul class="nav navbar-nav mai-top-nav">
+      <!-- <li class="nav-item"><a href="{{  app.path('index') }}" class="nav-link">Home</a></li> -->
+      <!-- <li class="nav-item"><a href="#" class="nav-link">About</a></li> -->
+      <!-- <li class="nav-item dropdown"> -->
+        <!-- <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">Services <span style="color:#fff;" class="angle-down s7-angle-down"></span></a> -->
+        <!-- <div role="menu" class="dropdown-menu"> -->
+          <!-- <a href="#" class="dropdown-item">Information</a> -->
+          <!-- <a href="#" class="dropdown-item">Company</a> -->
+          <!-- <a href="#" class="dropdown-item">Documentation</a> -->
+          <!-- <a href="#" class="dropdown-item">API Settings</a> -->
+          <!-- <a href="#" class="dropdown-item">Export Info</a> -->
+        <!-- </div> -->
+      <!-- </li> -->
+      <!-- <li class="nav-item"><a href="#" class="nav-link">Support</a></li> -->
+    </ul>
+        
+    <!--Icons Menu-->
+        <!-- <ul class="navbar-nav float-lg-right mai-icons-nav"> -->
+      <!-- <li class="dropdown nav-item mai-settings"> -->
+        <!-- <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"> -->
+          <!-- <span class="icon s7-share"></span> -->
+        <!-- </a> -->
+      <!-- </li> -->
+    <!-- </ul> -->
+    
+        <!--User Menu-->
+        <!-- <ul class="nav navbar-nav float-lg-right mai-user-nav"> -->
+      <!-- <li class="dropdown nav-item"> -->
+        <!-- <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="dropdown-toggle nav-link"> -->
+          <!-- <span class="user-name"> MENU</span><img src="{{asset('/img/icon-menu.png')}}" alt="Menu"> -->
+        <!-- </a> -->
+      <!-- </li> -->
+    <!-- </ul> -->
+    
+      <!--Lang Menu-->
+     <ul class="navbar-nav float-lg-right mai-icons-nav">
+          <li class="dropdown nav-item">
+            <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
+              <span class="icon s7-global" data-toggle="tooltip" data-placement="left" title="Seleccionar idioma"></span>
+            </a>
+            <div role="menu" class="dropdown-menu dropdown-lang dropdown-lang">
+                <!--<a href="/en" class="dropdown-item"><span class="icon s7-global"> </span>English</a>-->
+                <a href="/es" class="dropdown-item"><span class="icon s7-global"> </span>Español</a>
+                <a href="/pr" class="dropdown-item"><span class="icon s7-global"> </span>Portuguese</a>
+            </div>
+          </li>
+    </ul>
+  </div>
+</nav>
+	<div class="mai-wrapper">
+	
+	 <div class="main-content container">
+	 
+	  <!--Basic Elements-->
+        <div class="row">
+          <div class="col-md-12">
+            <div class="panel panel-default">
+              <div class="panel-heading panel-heading-divider">{{'First step'|trans}}<span class="panel-subtitle">{{'Enter your personal information and'|trans}} <b class="text-success">{{'generate your new password'|trans}}</b> {{'to access your profile'|trans}}</span></div>
+              <div class="panel-body">
+                <form  action="{{ path('user_save') }}" method="post" class="form-register">
+                
+				          <div class="form-group row">
+                    <label class="col-3 col-form-label text-right">{{'Email'|trans}}</label>
+                    <div class="col-6">
+                      <input type="text" name="email" id="email" class="form-control">
+                    </div>
+                  </div>
+				  
+                  <div class="form-group row">
+                    <label class="col-3 col-form-label text-right">{{'Password'|trans}}</label>
+                    <div class="col-6">
+					           <input type="password" name="password" id="password" class="form-control">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-3 col-form-label text-right">{{'Confirm Password'|trans}}</label>
+                    <div class="col-6">
+					              <input type="password" name="confirmpassword" id="confirmpassword" class="form-control">
+                        <input type="hidden" name="type" value="new">								
+                    </div>
+                  </div>
+				  
+				          <div class="row pt-3">
+                    <div class="col-3">
+                    </div>
+                    <div class="col-6">
+                      <p class="text-left">
+                        <button type="submit" class="btn btn-space btn-primary pl-3 pr-3">{{'Generate password'|trans}}</button>
+                        <button type="reset" class="btn btn-space btn-secondary">Cancelar</button>
+											  <div role="alert" class="alert alert-success alert-simple alert-dismissible" style="display:none;">
+          							  <span class="icon s7-check"></span>
+          							  <span class="msg"></span>
+          							</div>
+				              </p>
+                    </div>
+                  </div>
+				  
+                  
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>     
+		
+           </div>
+      </div>
+	</div>	
+	
+	
+   
+       
+{% endblock %}

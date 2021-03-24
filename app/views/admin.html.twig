@@ -1,0 +1,122 @@
+      <!-- ============================================================== -->
+      <!-- Start right Content here -->
+      <!-- ============================================================== -->
+      <div class="content-page">
+        <!-- Start content -->
+        <div class="content">
+          <div class="container">
+            <!-- Page-Title -->
+            <div class="row">
+              <div class="col-sm-6">
+                <h4 class="page-title m-b-5">Reportes de Datos</h4>
+                <p class="text-muted">Listado total de reportes ingresados para indicadores SAP</p>
+              </div>
+               {% if is_granted('ROLE_ADMIN') %}  
+              <div class="col-sm-6 text-right">
+                <a href="{{path('import')}}" type="button" class="m-t-15 btn btn-primary waves-effect waves-light">Registrar reporte</a>
+              </div>
+              {% endif %}
+            </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="card-box">
+                              
+                                    <table id="datatable" class="table table-striped table-bordered" data-page-length='50'>
+                                            <thead>
+                                                <tr>
+                                                    <th>Titulo</th>
+                                                    <th>Categoría</th>
+                                                     <th>Vídeo</th>
+                                                    <th>Idioma</th>
+                                                    <th>Cant.</th>
+                                                    <th>Fecha</th>
+                                                    <th style="width:40px"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for item in list %}
+                                                    <tr>
+                                                        <td>
+                                                         {{item.title}}
+                                                        </td>
+                                                        <td class="text-nowrap">     
+                                                        {% if item.category == '1' %}
+                                                        Marketing Academy
+                                                        {% elseif item.category == '2' %}
+                                                        Meet the Expert
+                                                        {% else %}
+                                                        Social Monday
+                                                        {% endif %}
+                                                      </td>
+                                                       <td>
+                                                      
+                                                       {% if item.video != '' %}
+                                                       {# SI   #}
+                                                        <a href="{{item.video}}" target="_blank" data-title="{{item.title}}"  class="viewstatus " data-toggle="tooltip" data-placement="top" title="" data-original-title="YouTube">
+                                                           <i class="glyphicon glyphicon-play-circle" style="font-size: 17px;"></i>
+                                                        </a>                                                      
+                                                      {% else %}
+                                                      --
+                                                      {% endif %}
+                                                      </td>
+                                                     <td>
+                                                      
+                                                       {% if item.lang == '1' %}
+                                                       Español                                                       
+                                                      {% else %}
+                                                      Portugues
+                                                      {% endif %}
+                                                      </td>
+                                                        <td>{{item.cant('d/m/Y')}}</td>
+                                                        <td>{{item.date|date('d/m/Y')}}</td>
+                                                        <td class="text-center">
+                                                       
+
+                                                        <div class="btn-group">
+                                                    <button type="button" class="btn btn-xs btn-purple dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false">Opciones <span class="caret"></span></button>
+                                                    <ul class="dropdown-menu" role="menu">
+                                                        {% set current_url = app.request_stack.getCurrentRequest.pathinfo  %}
+                                                        {% if '/listpr' not in current_url %} {% set lang='es' %} {% else %} {% set lang='pr' %} {% endif %}
+                                                        <li><a href="#" class="btn_titulo" data-title="{{item.title}}" data-url="{{ path('update_title') }}/{{item.id}}" >Editar Título</a></li>   
+                                                         <li><a href="#" class="btn_video" data-youtube="{{item.video}}" data-url="{{ path('update_video') }}/{{item.id}}">YouTube Webinar</a></li> 
+                                                         <li><a href="{{ path('report') }}/{{item.date|date('Y')}}/{{lang}}/{{item.slug}}" target="_blank">Mostrar reporte</a></li>
+                                                         <li><a href="{{ path('datareports') }}/{{lang}}/{{item.slug}}" target="_blank">Mostrar usuarios</a></li>    
+                                                         {# <a  href="{{ path('report') }}/{{item.date|date('Y')}}/{{lang}}/{{item.slug}}"  class="viewstatus table-action-btn" data-toggle="tooltip" data-placement="top" title="Ver Reporte" target="_blank" >
+                                                              <i class="glyphicon glyphicon-share"></i>
+                                                         </a> #}                                                        
+                                                        
+                                                        {% if is_granted('ROLE_ADMIN') %}  
+                                                        <li class="divider"></li>
+                                                        <li>
+                                                          <a href="#" data-url="{{ path('admin_del') }}/{{item.id}}" data-title="{{item.title}}"  class="btn_delete"  title="" data-original-title="Eliminar">
+                                                           Eliminar reporte                                                             
+                                                          </a>
+                                                           {# <a href="#" data-url="{{ path('admin_del') }}/{{item.id}}" data-title="{{item.title}}"  class="viewstatus table-action-btn btn_delete" data-toggle="tooltip" data-placement="top" title="" data-original-title="Eliminar">
+                                                              <i class="glyphicon glyphicon-trash"></i>
+                                                            </a> #}
+                                                        </li>
+                                                        {% endif %}
+
+                                                    </ul>
+                                                </div>
+                                                        
+                                                        </td>
+                                                    </tr>
+                                                {% endfor %}
+                                                
+                                                
+                                            </tbody>
+                                        </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div> <!-- container -->
+
+                </div> <!-- content -->
+				{% include 'footer.html.twig' %}               
+
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Right content here -->
+            <!-- ============================================================== -->

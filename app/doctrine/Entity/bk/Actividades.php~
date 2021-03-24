@@ -1,0 +1,315 @@
+<?php
+
+namespace Entity;
+
+/**
+ * Actividades
+ */
+class Actividades
+{
+    /**
+     * @var integer
+     */
+    private $idbattle;
+
+    /**
+     * @var string
+     */
+    private $idnegocio;
+
+    /**
+     * @var string
+     */
+    private $nombredecliente;
+
+    /**
+     * @var string
+     */
+    private $idusr;
+
+    /**
+     * @var string
+     */
+    private $tipo;
+
+    /**
+     * @var string
+     */
+    private $status;
+
+    /**
+     * @var string
+     */
+    private $fecha;
+
+
+    /**
+     * Get idbattle
+     *
+     * @return integer
+     */
+    public function getIdbattle()
+    {
+        return $this->idbattle;
+    }
+
+    /**
+     * Set idnegocio
+     *
+     * @param string $idnegocio
+     *
+     * @return Actividades
+     */
+    public function setIdnegocio($idnegocio)
+    {
+        $this->idnegocio = $idnegocio;
+
+        return $this;
+    }
+
+    /**
+     * Get idnegocio
+     *
+     * @return string
+     */
+    public function getIdnegocio()
+    {
+        return $this->idnegocio;
+    }
+
+    /**
+     * Set nombredecliente
+     *
+     * @param string $nombredecliente
+     *
+     * @return Actividades
+     */
+    public function setNombredecliente($nombredecliente)
+    {
+        $this->nombredecliente = $nombredecliente;
+
+        return $this;
+    }
+
+    /**
+     * Get nombredecliente
+     *
+     * @return string
+     */
+    public function getNombredecliente()
+    {
+        return $this->nombredecliente;
+    }
+
+    /**
+     * Set idusr
+     *
+     * @param string $idusr
+     *
+     * @return Actividades
+     */
+    public function setIdusr($idusr)
+    {
+        $this->idusr = $idusr;
+
+        return $this;
+    }
+
+    /**
+     * Get idusr
+     *
+     * @return string
+     */
+    public function getIdusr()
+    {
+        return $this->idusr;
+    }
+
+    /**
+     * Set tipo
+     *
+     * @param string $tipo
+     *
+     * @return Actividades
+     */
+    public function setTipo($tipo)
+    {
+        $this->tipo = $tipo;
+
+        return $this;
+    }
+
+    /**
+     * Get tipo
+     *
+     * @return string
+     */
+    public function getTipo()
+    {
+        return $this->tipo;
+    }
+
+    /**
+     * Set status
+     *
+     * @param string $status
+     *
+     * @return Actividades
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Set fecha
+     *
+     * @param string $fecha
+     *
+     * @return Actividades
+     */
+    public function setFecha($fecha)
+    {
+        $this->fecha = $fecha;
+
+        return $this;
+    }
+
+    /**
+     * Get fecha
+     *
+     * @return string
+     */
+    public function getFecha()
+    {
+        return $this->fecha;
+    }
+    /**
+     * @var string
+     */
+    private $mensaje;
+
+    /**
+     * @var string
+     */
+    private $comentario;
+
+    /**
+     * @var string
+     */
+    private $puntaje;
+
+
+    /**
+     * Set mensaje
+     *
+     * @param string $mensaje
+     *
+     * @return Actividades
+     */
+    public function setMensaje($mensaje)
+    {
+        $this->mensaje = $mensaje;
+
+        return $this;
+    }
+
+    /**
+     * Get mensaje
+     *
+     * @return string
+     */
+    public function getMensaje()
+    {
+        return $this->mensaje;
+    }
+
+    /**
+     * Set comentario
+     *
+     * @param string $comentario
+     *
+     * @return Actividades
+     */
+    public function setComentario($comentario)
+    {
+        $this->comentario = $comentario;
+
+        return $this;
+    }
+
+    /**
+     * Get comentario
+     *
+     * @return string
+     */
+    public function getComentario()
+    {
+        return $this->comentario;
+    }
+
+    /**
+     * Set puntaje
+     *
+     * @param string $puntaje
+     *
+     * @return Actividades
+     */
+    public function setPuntaje($puntaje)
+    {
+        $this->puntaje = $puntaje;
+
+        return $this;
+    }
+
+    /**
+     * Get puntaje
+     *
+     * @return string
+     */
+    public function getPuntaje()
+    {
+        return $this->puntaje;
+    }
+    /**
+     * @var string
+     */
+    private $notificar;
+
+
+    /**
+     * Set notificar
+     *
+     * @param string $notificar
+     *
+     * @return Actividades
+     */
+    public function setNotificar($notificar)
+    {
+        $this->notificar = $notificar;
+
+        return $this;
+    }
+
+    /**
+     * Get notificar
+     *
+     * @return string
+     */
+    public function getNotificar()
+    {
+        return $this->notificar;
+    }
+}

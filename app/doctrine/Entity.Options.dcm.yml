@@ -1,0 +1,17 @@
+#config/doctrine/Entity.Options.dcm.yml
+Entity\Options:
+    type: entity
+    table: options
+    fields:
+        idoption :
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        input:
+            type: string
+            length: 255
+        val:
+            type: string
+            length: 255
+    lifecycleCallbacks: {  }

@@ -1,0 +1,12 @@
+@charset "utf-8";
+/* CSS Document */
+
+@font-face {font-family:BentonSansBold;src:url(../fonts/bensbd-webfont.eot); src:url(../fonts/bensbd-webfont.woff) format("woff"),
+url(../fonts/bensbd-webfont.eot?#iefix) format('embedded-opentype'),
+url(../fonts/bensbd-webfont.ttf) format("truetype"),
+url(../fonts/bensbd-webfont.svg) format("svg")}
+
+@font-face {font-family:BentonSansBook; src:url(../fonts/bensbk-webfont.eot); src:url(../fonts/bensbk-webfont.woff) format("woff"),
+url(../fonts/bensbk-webfont.eot?#iefix) format('embedded-opentype'),
+url(../fonts/bensbk-webfont.ttf) format("truetype"),
+url(../fonts/bensbk-webfont.svg) format("svg")}

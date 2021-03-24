@@ -1,0 +1,136 @@
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+    <title>{% block title %}{% endblock %}</title>
+
+     <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('public/v2/icons/apple-icon-57x57.png') }}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('public/v2/icons/apple-icon-60x60.png') }}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('public/v2/icons/apple-icon-72x72.png') }}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('public/v2/icons/apple-icon-76x76.png') }}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{{ asset('public/v2/icons/apple-icon-114x114.png')}}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('public/v2/icons/apple-icon-120x120.png')}}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{{ asset('public/v2/iconsapple-icon-144x144.png')}}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('public/v2/icons/apple-icon-152x152.png')}}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('public/v2/icons/apple-icon-180x180.png')}}">
+    <link rel="icon" type="image/png" sizes="192x192"  href="{{ asset('public/v2/icons//android-icon-192x192.png')}}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('public/v2/icons/favicon-32x32.png')}}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('public/v2/icons/favicon-96x96.png')}}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('public/v2/icons/favicon-16x16.png')}}">
+    <link rel="manifest" href="{{ asset('public/v2/icons/manifest.json')}}">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="{{ asset('public/v2/icons/ms-icon-144x144.png') }}">
+    <meta name="msapplication-config" content="{{ asset('public/v2/icons/browserconfig.xml')}}">
+    <meta name="theme-color" content="#ffffff">
+
+    {# <link rel="apple-touch-icon" href="/docs/4.5/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+    <link rel="icon" href="/docs/4.5/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="/docs/4.5/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+    <link rel="manifest" href="/docs/4.5/assets/img/favicons/manifest.json">
+    <link rel="mask-icon" href="/docs/4.5/assets/img/favicons/safari-pinned-tab.svg" color="#563d7c">
+    <link rel="icon" href="/docs/4.5/assets/img/favicons/favicon.ico">
+    <meta name="msapplication-config" content="/docs/4.5/assets/img/favicons/browserconfig.xml">
+    <meta name="theme-color" content="#563d7c"> #}
+    
+    <link rel="stylesheet" href="{{ asset('public/v2/css/bootstrap.min.css') }}assets" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('public/v2/css/themify.css') }}assets" type="text/css" />
+    {# <link rel="stylesheet" href="{{ asset('public/v2/styles.css') }}assets" type="text/css" /> #}
+    <link rel="stylesheet" href="{{ asset('public/v2/home.css') }}assets" type="text/css" />
+    {# <link rel="stylesheet" href="{{ asset('public/v2/sweet-alert/dist/sweetalert2.min.css') }}" type="text/css" /> 
+    <script type="text/javascript" src="{{ asset('public/v2/js/modernizr.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('public/v2/sweet-alert/dist/sweetalert2.all.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('public/v2/js/jquery.validate.min.js') }}"></script> #}
+    <script>
+        {# {% set token = app.session.get("token") %}
+        const my_token ="{{token}}"
+        if(!my_token){
+            window.location.href = "{{ path('logout')}}"
+        } #}
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2201948-49"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-2201948-49');
+    </script>
+
+    
+</head>
+
+<body>
+<header>
+        <div class="navbar navbar-dark box-shadow bg_header">
+            <div class="container d-flex justify-content-between">
+                <a href="#" class="navbar-brand d-flex align-items-center">
+                    <img class="mr-3" src="{{ asset('public/v2/img/sap.png') }}" width="100" alt="SAP">
+                    <!-- <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg> -->
+                     <strong class="text-white">Portal de Certificados</strong> 
+                </a>
+                {# <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation"> #}
+               <span class="text-white"> 
+               {# <a href="mailto:{{s['username']}}" class="p-2"> {{s['username']}} </a> |  #}
+               {% if app['lang'] == '2' %}
+                <a href="{{path('publicroute')}}?lang=es" class="lang mr-2">Versión en español</a>
+                {% else %}
+                <a href="{{path('publicroute')}}?lang=pr" class="lang mr-2">Versão em português</a>
+                {% endif %}
+                |
+               
+               <a href="{{ path('publiclogout') }}" class="text-white p-2"> {{traduccion('Cerrar sessión','Fechar Sessão')}}</a>
+               <img src="{{ asset('public/v2/img/user-white.png')}}" width="90" style="width:30px" class="m-2-">
+               </span> 
+               
+            {# <span class="navbar-toggler-icon"></span> #}
+          
+            </div>
+        </div>
+    </header>
+    {% block body %}{% endblock %} 
+    <footer class="text-muted bg-light">
+        <div class="container py-5 ">
+        <div class="row">
+            <div class="col-sm-5">
+                <p>© 2020 {{traduccion('SAP Latinoamérica','SAP América Latina')}}</p>
+            </div>
+            <div class="col-sm-7">
+                <ul class="list-footer">
+                    <li><a href="#">{{traduccion('Privacidad','Privacidade')}}Privacidad</a></li>
+                    <li><a href="#">{{traduccion('Condiciones de uso','Condições de uso')}}</a></li>
+                    <li><a href="#">Aviso Legal</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    </footer>  
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>
+        window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')
+    </script>
+    <!--  <script src="../../assets/js/vendor/popper.min.js"></script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+    <script src="../../assets/js/vendor/holder.min.js"></script> -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/fontawesome.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    {% block javascript %}{% endblock %}	
+   
+
+</body>
+</body>
+
+</html>

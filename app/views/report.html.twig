@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<meta name="author" content="Brainred">
+		<link rel="shortcut icon" href="{{ asset('assets/images/favicon_1.ico') }}">
+		<title>Marketing Academy | SAP</title>
+		
+		<link href="{{ asset('assets/css/report/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+		<link href="{{ asset('assets/css/report/core.css') }}" rel="stylesheet" type="text/css" />
+		<link href="{{ asset('assets/css/report/components.css') }}" rel="stylesheet" type="text/css" />
+		<link href="{{ asset('assets/css/report/icons.css') }}" rel="stylesheet" type="text/css" />
+		<!-- <link href="{{ asset('assets/css/report/pages.css') }}" rel="stylesheet" type="text/css" /> -->
+		<link href="{{ asset('assets/css/report/jquery.circliful.css') }}" rel="stylesheet" type="text/css" />
+		
+		<!-- <link href="{{ asset('assets/css/report/responsive.css') }}" rel="stylesheet" type="text/css" /> -->
+		<link href="{{ asset('assets/css/report/fonts.css') }}" rel="stylesheet" type="text/css" media="all"/>
+		<link href="{{ asset('assets/css/report/main.css') }}" rel="stylesheet" type="text/css" media="all"/>
+		<link href="{{ asset('assets/css/buttons.dataTables.min.css') }}" rel="stylesheet" type="text/css" />
+		<link href="{{ asset('assets/css/dataTables.responsive.css') }}" rel="stylesheet" type="text/css" />
+		<!--
+		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css"/>
+		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.1/css/responsive.dataTables.min.css"/>
+		-->
+   
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-2201948-49"></script>
+		<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'UA-2201948-49');
+		</script>
+
+	</head>
+	<body>
+		<div class="wrapper report-content">
+			<div class="container">
+				{% include 'menu_tabs.html.twig' %}
+
+				{% if report is not empty %}
+				
+				<div id="content-document">
+					<div style="border-bottom: 1px solid #5d9cec; padding-bottom: 10px;" class="m-b-20">
+						<h1 class="page-title" style="font-size: 36px;color: #5d9cec;margin: 0;vertical-align: middle;text-overflow: ellipsis;"> {{ report.title }}  </h1>
+						
+					</div>
+					<h2 class="page-title m-b-20" style="font-size: 28px;"> {{traduccion('Reporte de participantes', 'Relatório dos participantes')}}
+					<a href="{{path('datareports')}}/{{lang}}/{{report.slug}}" target="_blank" class="btn btn-primary btn-sm btn_report" style="background: #5d9cec;vertical-align: middle; margin-left: 10px; float:right; margin-top: 6px;"> {{traduccion('Mostrar Reportes', 'Mostrar relatórios')}} </a>
+						<button onclick="generarPDF(event);" class="btn btn-primary btn-sm" id="btn-pdf" style="background: #5d9cec;vertical-align: middle; float:right; margin-top: 6px;"> {{traduccion('Descargar PDF', 'Baixar PDF')}} </button>
+					</h2>
+					{% set titulo = report.slug %}
+					{% set idioma = lang %}
+					<div class="row">
+
+						{% set t_registrados = participants('Registered',report.id) %}
+						{% set t_asistentes = participants('Asistants',report.id) %}
+						{% set t_partnets = participants('Partners',report.id) %}
+						<div class="col-sm-4">
+							<div class="card-box">
+								<h4 class="m-t-0 header-title m-b-20"><b> Participantes</b></h4>
+								<div style="margin:0 auto;" class="one-participantes" data-dimension="243"
+									data-text="{{ (t_asistentes*100/t_registrados) | round }}%"
+									data-info="{{traduccion('Asistentes', 'Assistentes')}}"
+									data-width="20"
+									data-fontsize="45"
+									data-percent=" {{ (t_asistentes *  100 / t_registrados) | round  }}"
+									data-fgcolor="#FCB712"
+									data-bgcolor="#ebeff2">
+								</div>								
+								
+								 <ul class="list-inline chart-detail-list text-center" style="margin: 0 -10px;">
+									<li>
+										<h5 class="text-muted m-b-0">
+											<i class="fa fa-circle m-r-5" style="color: #ebeff2"></i> {{traduccion('Registrados', 'Registrado')}}
+											<p style="color:#000; display:inline-block"> : {{ t_registrados }}</p>
+										</h5>
+									</li>
+									<li>
+										<h5 class="text-muted m-b-0">
+											<i class="fa fa-circle m-r-5" style="color: #FCB712"></i> {{traduccion('Asistentes', 'Assistentes')}}
+											<p style="color:#000; display:inline-block"> : {{ t_asistentes }}</p>
+										</h5>
+									</li>
+									<li>
+										<h5 class="text-muted m-b-0">
+											<i class="fa fa-circle m-r-5" style="color: #5fbeaa"></i>Partners
+											<p style="color:#000; display:inline-block"> :  {{t_partnets}}</p>
+										</h5>
+									</li>
+								</ul> 
+								
+								
+							</div>
+						</div>
+
+						{% set t_areaMkt = contar_rpts('Pregunta1', 'Marketing', report.id)  %}
+						{% set t_areaVentas = contar_rpts('Pregunta1', traduccion("Ventas", "Vendas"), report.id)  %}
+						{% set t_areaConsultoria = contar_rpts('Pregunta1', traduccion("Consultoría", "Serviços"), report.id)  %}
+						{% set t_areaGgeneral = contar_rpts('Pregunta1', 'Gerente', report.id)  %}
+						{% set totalAreasWork = t_areaMkt + t_areaVentas + t_areaConsultoria + t_areaGgeneral %}
+						 <div class="col-sm-4">
+							<div class="card-box">
+								<h4 class="m-t-0 m-b-20 header-title m-b-20"><b> {{traduccion('Area de trabajo', 'Area de trabalho')}}</b></h4>
+								<canvas id="area" height="250"></canvas>
+								<ul class="list-inline chart-detail-list text-center">
+									<li style="margin: 0 5px;">
+										<h5><i class="fa fa-circle m-r-5" style="color: #FCB712"></i>Marketing: <span class="txt txtMarketing"> {{t_areaMkt }} </span> </h5>
+									</li>
+									<li style="margin: 0 5px;">
+										<h5><i class="fa fa-circle m-r-5" style="color: #5d9cec"></i>{{traduccion("Ventas", "Vendas")}} : <span class="txt txtVentas"> {{t_areaVentas }} </span></h5>
+									</li>
+									<li style="margin: 0 5px;">
+										<h5><i class="fa fa-circle m-r-5" style="color: #5fbeaa"></i>{{ traduccion("Consultoría", "Serviços")}} : <span class="txt txtConsultoria"> {{t_areaConsultoria }} </span></h5>
+									</li>
+									<li style="margin: 0 5px;">
+										<h5><i class="fa fa-circle m-r-5" style="color: #ebeff2"></i>{{ traduccion("Gerente General", "Gerente Geral")}} : <span class="txt txtGGeneral"> {{t_areaGgeneral }} </span></h5>
+									</li>
+								</ul>
+								
+								
+							</div>
+						</div>
+						{% if idioma == 'es' %}					
+						{% set t_regionMexico = contar_rpts_varias("Pais", "'Mexico'", report.id)  %}
+						{% set t_regionSur = contar_rpts_varias('Pais', "'Argentina','Chile','Peru','Bolivia','Paraguay','Uruguay'", report.id)  %}
+						{% set t_regionNorte = contar_rpts_varias('Pais', "'Colombia','Costa Rica','Ecuador','El Salvador','Guatemala','Panama','Honduras','Guyana','Venezuela','United States','Dominican Republic'", report.id)  %}
+						{% set t_regionOtros = contar_rpts_varias('Pais', "'Guernsey','Vietnam', 'Zimbabwe','Brazil'", report.id)  %}
+						<div class="col-sm-4">
+							<div class="card-box">	
+								<h4 class="m-t-0 header-title m-b-20"><b>{{traduccion('Regiones', 'Regiões')}}</b></h4>
+								<canvas id="one-regions" height="250"></canvas>
+								<ul class="list-inline chart-detail-list text-center">
+									<li>
+										<h5><i class="fa fa-circle m-r-5" style="color: #FCB712"></i>México : <span class="txt txtMexico"> {{t_regionMexico}}</span></h5>
+									</li>
+									<li>
+										<h5><i class="fa fa-circle m-r-5" style="color: #5d9cec"></i>Sur : <span class="txt txtSur"> {{t_regionSur}}</span></h5>
+									</li>
+									<li>
+										<h5><i class="fa fa-circle m-r-5" style="color: #5fbeaa"></i>Norte : <span class="txt txNorte"> {{t_regionNorte}}</span></h5>
+									</li>
+									<li>
+										<h5><i class="fa fa-circle m-r-5" style="color: #ebeff2"></i>Others: <span class="txt txtOther"> {{t_regionOtros}}</span></h5>
+									</li>
+								</ul>
+							</div>
+						</div>
+
+						<div class="col-sm-12">
+							<div class="card-box">
+								<h4 class="m-t-0 header-title m-b-20"><b>{{traduccion('Paises', 'Países')}} </b></h4>
+								<canvas id="countries" height="350"></canvas>
+							</div>
+						</div>					
+						{% else %}
+						<div class="col-sm-4">
+							<div class="card-box">
+								<h4 class="m-t-0 header-title m-b-20"><b>{{traduccion('Paises', 'Países')}} </b></h4>
+								<canvas id="countries" height="333"></canvas>
+							</div>
+						</div>
+						{% endif %}
+
+						
+						
+
+					</div>
+
+
+					<h1 class="page-title m-b-20" style="font-size: 28px;">{{traduccion("Resultados de encuesta", "Resultados da pesquisa")}} </h1>
+					<div class="row">
+						<!-- //PREGUNTA 1 //  
+						¿En qué área trabaja? -->
+						{% set t_indTecnologia = contar_rpts('Industria', traduccion("Tecnología", "Tecnologia"), report.id)  %}
+						{% set t_indSoftware = contar_rpts('Industria', 'Software', report.id)  %}
+						{% set t_indConsultoria = contar_rpts('Industria', 'Consultoria', report.id)  %}
+						{% set t_indOtros = contar_rpts('Industria', traduccion("Otros", "Outros"), report.id)  %}
+						{% set totalIndustrias = t_indOtros + t_indSoftware + t_indTecnologia + t_indConsultoria %}
+						{% if totalIndustrias > 0 %}
+						<div class="col-sm-6" >
+							<div class="card-box text-center">
+								{# {{t_indTecnologia}}//{{t_indConsultoria}}//{{t_indSoftware}}// #}
+								<h4 class="m-t-0 m-b-20 " style="font-size: 16px;"><b>{{traduccion("¿Cual es su línea de negocio?", "Qual é a sua linha de negócios?")}}</b></h4>
+								<ul class="list-inline chart-detail-list text-center">
+									<li>
+										<h5><i class="fa fa-circle m-r-5" style="color: #5d9cec"></i>Consultoria</h5>
+									</li>
+									<li>
+										<h5><i class="fa fa-circle m-r-5" style="color: #5fbeaa"></i>Software</h5>
+									</li>
+									<li>
+										<h5><i class="fa fa-circle m-r-5" style="color: #FCB712"></i>{{traduccion('Tecnología', 'Tecnologia')}}</h5>
+									</li>
+									<li>
+										<h5><i class="fa fa-circle m-r-5" style="color: #ebeff2"></i>{{traduccion('Otros', 'Outros')}} </h5>
+									</li>
+
+								</ul>
+								<canvas id="one-industria" height="250"></canvas>
+							</div>
+						</div>
+						{% endif %}
+
+						<!-- //PREGUNTA 2 // 
+						¿Desea ser invitado al Jam Group SAP Partner Marketing University? -->
+						{% set t_pregunta2Si = contar_rpts('Pregunta2', traduccion("Si", "Sim"), report.id)  %}
+						{% set t_pregunta2No = contar_rpts('Pregunta2', traduccion("No", "Não"), report.id)  %}
+						{% set totalpregunta2 = t_pregunta2Si + t_pregunta2No %}						
+						{% if totalpregunta2 > 0 %}
+						<div class="col-sm-6">
+							<div class="card-box text-center">
+								<h4 class="m-t-0 m-b-20 " style="font-size: 16px;"><b>{{traduccion('¿Desea ser invitado al grupo de JAM de Marketing Academy?', 'Deseja ser convidado ao grupo do Marketing Academy no JAM?')}}</b></h4>
+								<ul class="list-inline chart-detail-list text-center">
+									<li style="margin: 0 5px;">
+										<h5><i class="fa fa-circle m-r-5" style="color: #FCB712"></i>{{traduccion("Si", "Sim")}}</h5>
+									</li>
+									<li style="margin: 0 5px;">
+										<h5><i class="fa fa-circle m-r-5" style="color: #5d9cec"></i>{{traduccion("No", "Não")}}</h5>
+									</li>
+								</ul>
+								<canvas id="invite" height="250"></canvas>
+							</div>
+						</div>
+						{% endif %}
+
+						<!-- //PREGUNTA 3 // 
+						 ¿Conoce el programa de entrenamientos del año? -->
+						{% set t_pregunta3Si = contar_rpts('Pregunta3', traduccion("Si", "Sim"), report.id)  %}
+						{% set t_pregunta3No = contar_rpts('Pregunta3', traduccion("No", "Não"), report.id)  %}
+						{% set totalpregunta3 = t_pregunta3Si + t_pregunta3No %}						
+						{% if totalpregunta3 > 0 %}
+						<div class="col-sm-6">
+							<div class="card-box text-center">
+								<h4 class="m-t-0 m-b-20 " style="font-size: 16px;"><b> {{traduccion("¿Conoce el programa de entrenamientos del año?", "Você conhece o programa de treinamento do ano?")}} </b></h4>
+								<ul class="list-inline chart-detail-list text-center">
+									<li style="margin: 0 5px;">
+										<h5><i class="fa fa-circle m-r-5" style="color: #FCB712"></i>{{traduccion("Si", "Sim")}}</h5>
+									</li>
+									<li style="margin: 0 5px;">
+										<h5><i class="fa fa-circle m-r-5" style="color: #5d9cec"></i>{{traduccion("No", "Não")}}</h5>
+									</li>
+								</ul>
+								<canvas id="training" height="250"></canvas>
+							</div>
+						</div>
+						{% endif %}
+
+						<!-- //PREGUNTA 4 //  
+						¿Cree que este entrenamiento será de utilidad para su trabajo? -->
+						{% set t_pregunta4Si = contar_rpts('Pregunta4', traduccion("Si", "Sim"), report.id)  %}
+						{% set t_pregunta4No = contar_rpts('Pregunta4', traduccion("No", "Não"), report.id)  %}
+						{% set totalpregunta4 = t_pregunta4Si + t_pregunta4No %}						
+						{% if totalpregunta4 > 0 %}
+						<div class="col-sm-6">
+							<div class="card-box text-center">
+								<h4 class="m-t-0 m-b-20 " style="font-size: 16px;"><b>{{traduccion("¿Cree que este entrenamiento será de utilidad para su trabajo?", "Você acha que esse treinamento será útil para o seu trabalho?")}}</b></h4>
+								<ul class="list-inline chart-detail-list text-center">
+									<li style="margin: 0 5px;">
+										<h5><i class="fa fa-circle m-r-5" style="color: #FCB712"></i>{{traduccion("Si", "Sim")}}</h5>
+									</li>
+									<li style="margin: 0 5px;">
+										<h5><i class="fa fa-circle m-r-5" style="color: #5d9cec"></i>{{traduccion("No", "Não")}}</h5>
+									</li>
+								</ul>
+								<canvas id="util" height="250"></canvas>
+							</div>
+						</div>
+						{% endif %}
+					
+						<!-- //PREGUNTA 5 // ¿Cómo califica el entrenamiento? -->
+						{% set t_pregunta5Excelente = contar_rpts('Pregunta5', "Excelente", report.id)  %}
+						{% set t_pregunta5MuyBueno = contar_rpts('Pregunta5', traduccion("Muy bueno", "Muito bom"), report.id)  %}
+						{% set t_pregunta5Bueno = contar_rpts('Pregunta5', traduccion("Bueno", "Bom"), report.id)  %}
+						{% set t_pregunta5Regular = contar_rpts('Pregunta5', "Regular", report.id)  %}
+						
+						{% set totalpregunta5 = t_pregunta5Excelente + t_pregunta5MuyBueno + t_pregunta5Bueno + t_pregunta5Regular %}						
+						{% if totalpregunta5 > 0 %}
+						<div class="col-sm-6">
+							<div class="card-box text-center">
+								<h4 class="m-t-0 m-b-20 " style="font-size: 16px;"><b>{{traduccion("¿Cómo califica el entrenamiento?", "Como você classifica este treinamento?")}}</b></h4>
+								<ul class="list-inline chart-detail-list text-center">
+									<li style="margin: 0 5px;"><h5><i class="fa fa-circle m-r-5" style="color: #FCB712"></i>Excelente</h5></li>
+									<li style="margin: 0 5px;"><h5><i class="fa fa-circle m-r-5" style="color: #5d9cec"></i>{{traduccion("Bueno", "Bom")}}</h5></li>
+									<li style="margin: 0 5px;"><h5><i class="fa fa-circle m-r-5" style="color: #5fbeaa"></i>{{traduccion("Muy bueno", "Muito bom")}}</h5></li>
+									<li style="margin: 0 5px;"><h5><i class="fa fa-circle m-r-5" style="color: #ebeff2"></i>Regular</h5></li>
+								</ul>
+								<canvas id="calification" height="250"></canvas>
+							</div>
+						</div>
+						{% endif %}
+
+					<!-- //PREGUNTA 6 // ¿Cuál es su categoría de partner? -->
+						{% set t_pregunta6Sell = contar_rpts('Pregunta6', "Sell" , report.id)  %}
+						{% set t_pregunta6Run = contar_rpts('Pregunta6', "Run", report.id)  %}
+						{% set t_pregunta6Service = contar_rpts('Pregunta6', traduccion("Open", "Service") , report.id)  %}
+						{% set t_pregunta6Employee = contar_rpts('Pregunta6', traduccion("Empleado", "Employee") , report.id)  %}
+						{% set t_pregunta6Otros = contar_rpts_varias('Pregunta6', traduccion("'OEM','Hybris Partner','Otros','Other'", "'OEM','PE Build','Other','Distributor'") , report.id)  %}
+						{% set totalpregunta6 = t_pregunta6Sell + t_pregunta6Run + t_pregunta6Service + t_pregunta6Employee + t_pregunta6Otros %}
+						
+						{% if totalpregunta6 > 0 %}
+						<div class="col-sm-6">
+							<div class="card-box text-center">
+								<h4 class="m-t-0 m-b-20 " style="font-size: 16px;"><b>{{traduccion("¿Cuál es su categoría de partner?", "Qual é a sua categoria de parceiro?")}}</b></h4>
+								<ul class="list-inline chart-detail-list text-center">
+									<li style="margin: 0 5px;">
+										<h5><i class="fa fa-circle m-r-5" style="color: #5fbeaa"></i>Sell</h5>
+									</li>
+									<li style="margin: 0 5px;">
+										<h5><i class="fa fa-circle m-r-5" style="color: #5d9cec"></i>Run</h5>
+									</li>	
+									<li style="margin: 0 5px;">
+										<h5><i class="fa fa-circle m-r-5" style="color: #ff31d6"></i>{{traduccion("Open", "Service")}}</h5>
+									</li>
+									<li style="margin: 0 5px;">
+										<h5><i class="fa fa-circle m-r-5" style="color: #ebeff2"></i>Employee</h5>
+									</li>
+									<li style="margin: 0 5px;">
+										<h5><i class="fa fa-circle m-r-5" style="color: #FCB712"></i>Other</h5>
+									</li>
+								</ul>
+								<canvas id="partner" height="250"></canvas>
+							</div>
+						</div>
+						{% endif %}
+
+
+					
+					</div>
+				</div>
+				{% endif %}
+			</div>
+		</div>
+		
+		<script src="{{ asset('assets/js/jquery.min.js') }}"></script>		
+		<script src="{{ asset('assets/js/jspdf.min.js') }}"></script>
+		<script src="{{ asset('assets/js/html2canvas.js') }}"></script>
+		<script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+		<script src="{{ asset('assets/js/Chart.js') }}"></script>
+		<script src="{{ asset('assets/js/jquery.circliful.min.js') }}"></script>
+				
+		<script src="{{ asset('assets/js/jquery.core.js') }}"></script>
+	<!-- <script src="{{ asset('assets/js/jquery.app.js') }}"></script> -->
+
+<script>
+	
+	var element = document.getElementById('content-document');
+
+	function generarPDF(event){
+		event.preventDefault();
+		console.log('Init! ');
+		html2canvas(element, {
+			onrendered: function(canvas){
+				//$('#previewImage').append(canvas);
+				//getCanvas = canvas
+				var imgData = canvas.toDataURL('img/png');
+				var doc = new jsPDF('p', 'pt', 'a4', false);
+				doc.addImage(imgData, 'PNG', 25, 25, 550, 800);
+				doc.save('resumen.pdf');
+			}
+		});
+	}
+
+	$(document).ready(function(){
+		$('.one-participantes').circliful();
+		{% if lang == 'es' %}
+			$('ul.nav-tabs li:nth-child(1)').addClass("active");
+			$('div.tab-content div:nth-child(1)').addClass("active");
+		{% else %}
+			$('ul.nav-tabs li:nth-child(2)').addClass("active");
+			$('div.tab-content div:nth-child(2)').addClass("active");
+		{% endif %}
+	});
+
+	{% if report is not empty %}
+			////////////////////////////////////////// 
+			///AREA DE TRABAJO			
+				
+				{% if totalAreasWork > 0 %}			
+				var pieData = [
+				{% if t_areaMkt > 0 %}
+				{
+					value:  {{ (t_areaMkt * 100 / totalAreasWork ) | round }} ,
+					label: 'Marketing',
+					color: '#FCB712'
+				},
+				{% endif %}
+				{% if t_areaVentas > 0 %}
+				{
+					value:  {{ (t_areaVentas * 100 / totalAreasWork ) | round }},
+					label: 'Ventas',
+					color: '#5d9cec'
+				},
+				{% endif %}
+				{% if t_areaConsultoria > 0 %}
+				{
+					value:  {{ ( t_areaConsultoria * 100 / totalAreasWork ) | round }} ,
+					label: 'Consultoría',
+					color: '#5fbeaa'
+				},
+				{% endif %}
+				{% if t_areaGgeneral > 0 %}
+				{
+					value:  {{ ( t_areaGgeneral * 100 / totalAreasWork ) | round }},
+					label: 'Gerente General',
+					color: '#ebeff2'
+				}
+				{% endif %}
+				];
+			
+			var options = {
+				tooltipTemplate: "<"+"%= value %"+">"+"%",
+				onAnimationComplete: function(){
+					this.showTooltip(this.segments, true);
+				},
+				tooltipEvents: [],
+				showTooltips: true
+			};
+
+			var context = document.getElementById('area').getContext('2d');
+            var skillsChart = new Chart(context).Pie(pieData, options);
+			{% endif %}
+
+			/////////////////////////
+			// SOLO EN ESPAÑOL REPORTE DE REGION 
+			{% if idioma == 'es' %}	
+				{% set suma = t_regionMexico + t_regionSur + t_regionNorte + t_regionOtros %}
+				var pieDatar = [
+				{
+					value:  {{ (t_regionNorte * 100/suma)|round }} ,
+					label: 'Norte',
+					color: '#5fbeaa'
+				},
+				{
+					value:  {{ (t_regionSur * 100/suma)|round }},
+					label: 'Sur',
+					color: '#5d9cec'
+				},
+				{
+					value: {{ (t_regionMexico * 100/suma)|round }},
+					label: 'México',
+					color: '#fcb712'
+				},
+				{
+					value: {{ (t_regionOtros * 100/suma)|round }},
+					label: 'Others',
+					color: '#ebeff2'
+				}
+				];
+
+				var options = {
+					tooltipTemplate: "<"+"%= value %"+">"+"%",
+					onAnimationComplete: function(){
+						this.showTooltip(this.segments, true);
+					},
+					tooltipEvents: [],
+					showTooltips: true
+
+				}
+				var context = document.getElementById('one-regions').getContext('2d');
+				var skillsChart = new Chart(context).Pie(pieDatar, options);
+				{% endif %}
+				////////////////////////////////////////////
+				// CHART DE PAISES, SOLO EN ESPAÑOL
+				var LineChart = {
+					{% if idioma == 'es' %}
+					labels : ["México","Guatemala","Bolivia","Chile","Colombia","Venezuela","Argentina","Perú","Costa Rica","Panamá","Honduras","El Salvador","Brasil","Ecuador"],
+					{% else %}
+					labels : ["Brasil","USA"],
+					{% endif %}
+					datasets : [
+						{
+						fillColor : "rgba(93, 156, 236, 0.5)",
+						strokeColor : "rgba(93, 156, 236, 1)",
+						pointColor : "rgba(93, 156, 236, 1)",
+						pointStrokeColor : "#fff",
+						data: [
+							{% if idioma == 'es' %}
+							{{ contar_rpts('Pais', 'Mexico', report.id)  }},
+							{{ contar_rpts('Pais', 'Guatemala', report.id)  }},
+							{{ contar_rpts('Pais', 'Bolivia', report.id)  }},
+							{{ contar_rpts('Pais', 'Chile', report.id)  }},
+							{{ contar_rpts('Pais', 'Colombia', report.id)  }},
+							{{ contar_rpts('Pais', 'Venezuela', report.id)  }},
+							{{ contar_rpts('Pais', 'Argentina', report.id)  }},
+							{{ contar_rpts('Pais', 'Peru', report.id)  }},
+							{{ contar_rpts('Pais', 'Costa Rica', report.id)  }},
+							{{ contar_rpts('Pais', 'Panama', report.id)  }},
+							{{ contar_rpts('Pais', 'Honduras', report.id)  }},
+							{{ contar_rpts('Pais', 'El Salvador', report.id)  }},
+							{{ contar_rpts('Pais', 'Brasil', report.id)  }},
+							{{ contar_rpts('Pais', 'Ecuador', report.id)  }}
+							{% else %}
+							{{ contar_rpts('Pais', 'Brazil', report.id)  }},
+							{{ contar_rpts('Pais', 'United', report.id)  }},
+							{% endif %}
+							],
+						}
+					],
+					pieceLabel: {
+						mode: 'percentage',
+						precision: 2
+					}
+				};
+				var canvas = $('#countries');
+				var container = $(canvas).parent();
+				// function contentChart(){
+					$(canvas).attr('width', $(container).width())
+				// }
+				// contentChart();
+				// $(window).resize(contentChart);
+
+				var context = document.getElementById('countries').getContext('2d');
+				var skillsChart = new Chart(context).Bar(LineChart, {
+					showTooltips: false,
+					scaleSteps: 5,
+					scaleStepWidth: 50,
+					scaleStartValue: 0,
+					onAnimationComplete: function(){
+						var ctx = this.chart.ctx;
+						ctx.font = this.scale.font;
+						ctx.fillStyle = this.scale.textColor;
+						ctx.textAlign = "center";
+						ctx.textBaseline = "bottom";
+
+						this.datasets.forEach(function(dataset){
+							dataset.bars.forEach(function(bar){
+								ctx.fillText(bar.value+'%', bar.x, bar.y);
+							});
+						})
+					},
+
+				});
+
+		/////////////////////////////
+		///// PRGNTA 1 ¿qUE AREA TRABAJA?
+
+		{% if totalIndustrias > 0 %}
+		var pieData = [
+			{% if t_indOtros > 0 %}
+			{
+				value: {{ (t_indOtros *  100 / totalIndustrias)|round }} ,
+				label: '{{traduccion('Otros', 'Outros')}}',
+				color: '#ebeff2'
+			},
+			{% endif %}
+			{% if t_indSoftware > 0 %}
+			{
+				value:  {{ (t_indSoftware * 100/totalIndustrias)|round }} ,
+				label: 'Software',
+				color: '#5fbeaa'
+			},
+			{% endif %}
+			{% if t_indTecnologia > 0 %}
+			{
+				value:  {{ (t_indTecnologia * 100/totalIndustrias)|round}} ,
+				label: '{{traduccion('Tecnología', 'Tecnologia')}}',
+				color: '#FCB712'
+			},
+			{% endif %}
+			{% if t_indConsultoria > 0 %}
+			{
+				value:  {{ (t_indConsultoria * 100/totalIndustrias)|round }} ,
+				label: 'Consultoria',
+				color: '#5d9cec'
+			}
+			{% endif %}
+			];
+
+			var options = {
+				tooltipTemplate: "<"+"%= value %"+">"+"%",
+				onAnimationComplete: function(){
+					this.showTooltip(this.segments, true);
+				},
+				tooltipEvents: [],
+				showTooltips: true
+
+			}
+			var context = document.getElementById('one-industria').getContext('2d');
+			var skillsChart = new Chart(context).Pie(pieData,options);
+		{% endif %}
+
+			//////////////////
+			///// PRGNTA 2 ¿Desea ser invitado al grupo de JAM de Marketing Academy?	
+		
+			{% if totalpregunta2 > 0 %}
+				var pieData = [
+				{% if t_pregunta2Si > 0 %}
+				{
+					value:  {{ ( t_pregunta2Si * 100 / totalpregunta2 ) | round }} ,
+					label: '{{traduccion("Si", "Sim")}}',
+					color: '#FCB712'
+				},
+				{% endif %}
+				{% if t_pregunta2No > 0 %}
+				{
+					value: {{ ( t_pregunta2No * 100 / totalpregunta2 ) | round }} ,
+					label: '{{traduccion("No", "Não")}}',
+					color: '#5d9cec'
+				}
+				{% endif %}
+				];
+
+				var options = {
+				tooltipTemplate: "<"+"%= value %"+">"+"%",
+				onAnimationComplete: function(){
+					this.showTooltip(this.segments, true);
+				},
+				tooltipEvents: [],
+				showTooltips: true
+			};
+			var context = document.getElementById('invite').getContext('2d');
+			var skillsChart = new Chart(context).Pie(pieData, options);
+           {% endif %}
+
+			//////////////////
+			///// PRGNTA 3 ¿Conoce el programa de entrenamientos del año?	
+		
+			{% if totalpregunta3 > 0 %}
+				var pieData = [					
+				{% if t_pregunta3Si > 0 %}
+				{
+					value:  {{ ( t_pregunta3Si * 100 / totalpregunta3 ) | round }} ,
+					label: '{{traduccion("Si", "Sim")}}',
+					color: '#FCB712'
+				},
+				{% endif %}
+				{% if t_pregunta3No > 0 %}
+				{
+					value: {{ ( t_pregunta3No * 100 / totalpregunta3 ) | round }} ,
+					label: '{{traduccion("No", "Não")}}',
+					color: '#5d9cec'
+				}
+				{% endif %}
+				];
+
+				var options = {
+				tooltipTemplate: "<"+"%= value %"+">"+"%",
+				onAnimationComplete: function(){
+					this.showTooltip(this.segments, true);
+				},
+				tooltipEvents: [],
+				showTooltips: true
+			};
+			var context = document.getElementById('training').getContext('2d');
+			var skillsChart = new Chart(context).Pie(pieData, options);
+           {% endif %}
+
+			//////////////////
+			///// PRGNTA 4 ¿Cree que este entrenamiento será de utilidad para su trabajo?		
+		
+			{% if totalpregunta4 > 0 %}
+				var pieData = [					
+				{% if t_pregunta4Si > 0 %}
+				{
+					value:  {{ ( t_pregunta4Si * 100 / totalpregunta4 ) | round }} ,
+					label: '{{traduccion("Si", "Sim")}}',
+					color: '#FCB712'
+				},
+				{% endif %}
+				{% if t_pregunta4No > 0 %}
+				{
+					value: {{ ( t_pregunta4No * 100 / totalpregunta4 ) | round }} ,
+					label: '{{traduccion("No", "Não")}}',
+					color: '#5d9cec'
+				}
+				{% endif %}
+				];
+
+				var options = {
+				tooltipTemplate: "<"+"%= value %"+">"+"%",
+				onAnimationComplete: function(){
+					this.showTooltip(this.segments, true);
+				},
+				tooltipEvents: [],
+				showTooltips: true
+			};
+			var context = document.getElementById('util').getContext('2d');
+			var skillsChart = new Chart(context).Pie(pieData, options);
+           {% endif %}
+
+
+			///////////////////////
+			///// pregunta 5 ¿Cómo califica el entrenamiento?
+
+			{% if totalpregunta5 > 0 %}
+			var pieData = [
+			{% if t_pregunta5Regular > 0 %}	
+			{
+				value:  {{ ( t_pregunta5Regular * 100 / totalpregunta5 ) | round }} ,
+				label: 'Regular',
+				color: '#ebeff2'
+			},
+			{% endif %}
+			{% if t_pregunta5MuyBueno > 0 %}
+			{
+				value: {{ ( t_pregunta5MuyBueno * 100 / totalpregunta5 ) | round }} ,
+				label: '{{traduccion("Muy bueno", "Muito bom")}}',
+				color: '#5fbeaa'
+			},
+			{% endif %}
+			{% if t_pregunta5Bueno > 0 %}
+			{
+				value:  {{ ( t_pregunta5Bueno * 100 / totalpregunta5 ) | round }} ,
+				label: '{{traduccion("Bueno", "Bom")}}',
+				color: '#5d9cec'
+			},
+			{% endif %}
+			{% if t_pregunta5Excelente > 0 %}
+			{
+				value:  {{ ( t_pregunta5Excelente * 100 / totalpregunta5 ) | round }},
+				label: 'Excelente',
+				color: '#FCB712'
+			}
+			{% endif %}
+			];
+			var options = {
+				tooltipTemplate: "<"+"%= value %"+">"+"%",
+				onAnimationComplete: function(){
+					this.showTooltip(this.segments, true);
+				},
+				tooltipEvents: [],
+				showTooltips: true
+			};
+			var context = document.getElementById('calification').getContext('2d');
+			var skillsChart = new Chart(context).Pie(pieData,options);            
+            {% endif %}
+
+			/////////////////
+			// pregunta 6 ¿Cuál es su categoría de partner?
+
+			{% if totalpregunta6 > 0 %}
+			var pieData = [
+			{% if t_pregunta6Sell > 0 %}	
+			{
+				value:  {{ ( t_pregunta6Sell * 100 / totalpregunta6 ) | round }} ,
+				label: 'Sell',
+				color: '#5fbeaa'
+			},
+			{% endif %}
+			{% if t_pregunta6Run > 0 %}
+			{
+				value: {{ ( t_pregunta6Run * 100 / totalpregunta6 ) | round }} ,
+				label: 'Run',
+				color: '#5d9cec'
+			},
+			{% endif %}
+			{% if t_pregunta6Service > 0 %}
+			{
+				value:  {{ ( t_pregunta6Service * 100 / totalpregunta6 ) | round }} ,
+				label: '{{traduccion("Open", "Service")}}',
+				color: '#ff31d6'
+			},
+			{% endif %}
+			{% if t_pregunta6Employee > 0 %}
+			{
+				value:  {{ ( t_pregunta6Employee * 100 / totalpregunta6 ) | round }},
+				label: '{{traduccion("Empleado", "Employee")}}',
+				color: '#ebeff2'
+			},
+			{% endif %}
+			{% if t_pregunta6Otros > 0 %}
+			{
+				value:  {{ ( t_pregunta6Otros * 100 / totalpregunta6 ) | round }},
+				label: '{{traduccion("Otros", "Otros")}}',
+				color: '#FCB712'
+			}			
+			{% endif %}
+			];
+			var options = {
+				tooltipTemplate: "<"+"%= value %"+">"+"%",
+				onAnimationComplete: function(){
+					this.showTooltip(this.segments, true);
+				},
+				tooltipEvents: [],
+				showTooltips: true
+			};
+			var context = document.getElementById('partner').getContext('2d');
+			var skillsChart = new Chart(context).Pie(pieData,options);            
+            {% endif %}
+
+	{% endif %}
+
+
+		</script>
+	</body>
+</html>

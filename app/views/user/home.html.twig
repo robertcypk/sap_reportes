@@ -1,0 +1,203 @@
+
+{% extends "layouts/master-user.html.twig" %}
+{% block title %} SAP Administrador - Usuarios Registrados {% endblock %}
+{% block body %}
+ 
+
+    <main role="main">
+
+        <section class="jumbotron- bg_page text-center- p-5">
+            <div class="container main-title py-2">
+
+            <ul class="bread">
+                <li><a href="{{ path('publicroute') }}">{{traduccion('Portada','Home')}}</a></li>
+                <li><span class="text-white"> {{traduccion('Centro de descargas ','Centro de download')}}</span></li>
+            </ul>
+            <h2>
+            Certificados: <span class="font-light ">SAP Marketing Academy</span></h2>
+            {# <div class="icon-main-title">
+                <img src="{{ asset('public/v2/img/training-white.png') }}" alt="SAP" width="170">
+            </div>                 #}
+            </div>
+                </section>
+                            <div class="container my-5">
+                            {% if u is not empty  %}
+                              
+                            <div class="row">
+
+                                <div class="col-lg-3 ">
+                                <div class="profile mb-4">
+                                <h4 class="bg_cyan p-2 mb-5 text-white">{{traduccion('Participante','Concorrente')}}  </h4>
+                                 <img src="{{ asset('public/v2/img/sign.png') }}" class ="icon_sign" alt="SAP Graduate"  >
+                                 <p class="mb-0">{{u.Nombre|title}} {{u.Apellido|capitalize}} </p> 
+                                 <label class="mb-3">{{traduccion('Nombre y Apellidos','Nomes e sobrenomes')}}</label>
+
+                                 <p class="mb-0"><a href="mailto:{{u.Email}}" class="text-black-">{{u.Email}}</a></p> 
+                                 <label class="mb-3">Email</label>
+
+
+                                 <p class="mb-0">{{ u.Pais}} / {{ u.Ciudad}}</p> 
+                                 <label class="mb-3">País</label>
+
+
+                                 <p class="mb-0">{{ u.Cargo | title}}</p> 
+                                 <label class="mb-3">{{traduccion('Cargo','Posição')}}</label>
+
+                                <p class="mb-0">{{u.Industria}}</a></p> 
+                                 <label class="mb-3">{{traduccion('Industria','Indústria')}}</label>
+
+                                 <p class="mb-0">{{u.Relacionconsap}} </p> 
+                                 <label class="mb-3">{{traduccion('Relación con SAP','Relacionamento com SAP')}}</label>
+
+
+
+                                </div>
+
+
+
+                                    {# <div class="card card-default" style="background: #f0ab00;">
+                                    <!-- Default panel contents -->
+                                    <center class="mt-4">
+                                    <img src="{{ asset('public/v2/img/ico-certificado2.png') }}" alt="SAP Graduate" class  ="icon_cert" >
+                                    </center>
+                                    <div class="card-body text-center pt-5 mt-4 mb-3">
+                                        <h3 class="card-title font_strong text-white">{{u.Nombre|title}} {{u.Apellido|capitalize}}</h3>
+                                        <a href="mailto:{{u.Email}}" class="text-black">{{u.Email}}</a>
+                                       
+                                        
+                                    </div>
+
+                                    <!-- List group -->
+                                    <ul class="list-group list-group-flush text-grey">
+                                        
+                                        <li class="list-group-item">Empresa: <b class="text-black">{{ u.Empresa}}</b></li>                                       
+                                        <li class="list-group-item">Cargo: <b>{{ u.Cargo}}</b></li>
+                                        <li class="list-group-item">Teléfono: <b>{{ u.Telefonodelaempresa}}</b></li>
+                                        <li class="list-group-item">País: <b class="text-black">{{ u.Pais}}</b></li>    
+                                        <li class="list-group-item">Ciudad: <b>{{ u.Ciudad}}</b></li>
+                                        <li class="list-group-item">Industria:<b> {{u.Industria}}  </b></li>                                           
+                                        <li class="list-group-item">SAP:<b class="text-black"> {{u.Relacionconsap}}  </b></li>     
+                                    </ul>
+                                    </div> #}
+                                </div>
+
+
+
+                                <div class="col-lg-9">
+                                    <div class="bs-callout bs-callout-danger mt-3-" >
+                                    {% if c is not empty %}
+                                        <h2 class="font_strong- text-yellow">{{traduccion('Entrenamientos','Treinamento')}} </h2>
+                                         <p class="card-text text-grey">{{traduccion('Registro de participación en los webinars de entrenamiento que SAP reconoce con el certificado personal.','Registro da participação em seminários on-line de treinamento que a SAP reconhece com o certificado pessoal.')}}</p>
+                                        
+                                        <div class="table-responsive- pt-3 pb-5">
+                                        <table class="table table-compact m-b-0"> 
+                                        <thead> 
+                                        <tr> 
+                                        {# <th>#</th>  #}
+                                        <th >Webinar</th> <th>{{traduccion('Fecha','Date')}}</th> <th>Certificado</th>   
+                                        </tr> 
+                                        </thead> 
+                                            <tbody> 
+
+                                            {% for key, value in c %}
+                                            <tr> 
+
+                                            {# <td>
+                                            {{key}}
+                                            </td>  #}
+                                            <td >                                            
+                                            {{ value.title }}
+                                            
+                                            </td>
+                                            <td class="date">{{value.date|date('d/m/Y')}}</td> 
+                                            <td class="action">
+                                            
+                                            <form action="{{ path('makepdf') }}" method="post" target="_blank">
+                                                <input type="hidden" name="user" value="{{u.Email}}">
+                                                <input type="hidden" name="cert" value="{{ value.id }}">
+                                                <button type="submit" class="btn btn-sm btn-secondary btn_change px-2"><i class=" ti-control-shuffle pr-2"></i> Descargar </button>
+                                             </form>
+
+                                            </td>                                            
+                                            
+                                            </tr> 
+
+                                            {% endfor %}
+                                        
+                                            </tbody> 
+                                        </table> 
+                                        </div>
+                                        {% else %}
+                                            <div class="alert alert-warning alert-dismissible fade show mb-5" role="alert">
+                                            <strong>!{{traduccion('Certificados en espera','Certificados em espera')}}!</strong> {{traduccion('Usted no registra participación en los webinars.','Você não registra a participação em seminários on-line.')}} 
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                            </div>
+                                        {% endif %}
+                                    {% endif %}
+                                    </div>
+
+
+
+
+                                    <div class="bs-callout bs-callout-danger mt-3-" >
+                                        <h2 class="font_strong- text-yellow" >{{traduccion('Sesiones grabadas','Sessões gravadas')}}</h2>
+                                         <p class="card-text text-grey">{{traduccion('Vuelve a repasar nuestras últimas sesiones de entrenamiento a cargo de nuestros especialistas en Marketing.','Volte para revisar nossas últimas sessões de treinamento de nossos especialistas em Marketing.')}}  </p>
+                                        
+                                        <div class="row py-4">
+                                         {% for key, value in v %}
+                                        <div class="col-md-3">
+                                            <div class="card card-video mb-4 box-shadow">
+                                                <div class="card-img" style="background-image: url('https://img.youtube.com/vi/{{ value.video|slice(-11) }}/0.jpg')">
+                                                    <a href="{{path('publicvideo')}}/{{ value.id }}" class="card-play" >
+                                                    <img class="card-play" src="{{ asset('public/v2/img/video-tumb.png') }}" alt="{{ value.title }}">
+                                                    </a>
+                                                </div>
+                                                
+                                               
+                                                <div class="card-body">
+                                                    <p class="card-text">
+                                                    {{ value.title |length > 50 ? value.title |slice(0, 50) ~ '...' : value.title   }}
+                                                    </p>
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <div class="btn-group">
+                                                            <a href="{{path('publicvideo')}}/{{ value.id }}" class="btn btn-sm btn-outline-primary  btn_play "><i class="ti-control-play pr-1 ">
+                                                            
+                                                            </i> {{traduccion('Reproducir','Toque')}} </a>
+                                                        </div>
+                                                        <small class="text-muted">9 mins</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                         
+                                               
+
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+
+                                
+                            </div>
+                           
+                           
+                          
+                            </div>
+
+
+
+    </main>
+
+    
+{% endblock %}
+
+{% block javascript %}
+<script>
+{# {% set token = app.session.get("token") %} #}
+</script>
+{% endblock %}

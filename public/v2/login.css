@@ -1,0 +1,148 @@
+@font-face {
+    font-family: 'BentonRegular';
+    src: url('fonts/BentonSans.eot');
+    src: url('fonts/BentonSans.eot?#iefix') format('embedded-opentype'),
+         url('fonts/BentonSans.woff') format('woff'),
+         url('fonts/BentonSans.ttf') format('truetype'),
+         url('fonts/BentonSans.svg#BentonRegular') format('svg');
+    font-style: normal;
+    font-weight: normal;
+}
+/* @font-face {
+    font-family: 'BentonLight';
+    src: url('../fonts/BentonSans-Light.eot');
+    src: url('../fonts/BentonSans-Light.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/BentonSans-Light.woff') format('woff'),
+         url('../fonts/BentonSans-Light.ttf') format('truetype'),
+         url('../fonts/BentonSans-Light.svg#BentonLight') format('svg');
+    font-style: normal;
+    font-weight: normal;
+} */
+@font-face {
+    font-family: 'BentonBold';
+    src: url('fonts/BentonSans-Bold.eot');
+    src: url('fonts/BentonSans-Bold.eot?#iefix') format('embedded-opentype'),
+         url('fonts/BentonSans-Bold.woff') format('woff'),
+         url('fonts/BentonSans-Bold.ttf') format('truetype'),
+         url('fonts/BentonSans-Bold.svg#BentonBold') format('svg');
+    font-style: normal;
+    font-weight: normal;
+}
+
+html, body {
+    font-family: 'BentonRegular';
+    font-size: 14px;
+    height: 100%;
+    margin: 0;
+}
+.bg-header{
+    background: rgb(22, 22, 22);
+}
+.bg-home { 
+    background: url("../v2/img/bg_home.jpg") no-repeat center;
+    background-size: auto;
+    min-height: 490px;
+    background-size: cover;
+    height: 100%;  
+
+}
+main {
+    height: calc(100% - 75px);
+}
+a {
+    color: #008FD3;
+}
+
+a:hover {
+    color: #078ac7;
+}
+.text-cyan{
+    color: #008FD3;
+}
+.text-yellow {
+    color: #F0AB00;
+}
+.text-black {
+    color: #000;
+}
+.bg_yellow{
+    background: #F0AB00;
+}
+.title {
+    font-family: 'BentonBold';
+    font-size: 55px;
+    /* color: #ffb400; */
+    line-height: 50px;
+    margin-bottom: 30px;
+}
+
+.lang {
+    position: absolute;
+    right: 75px;
+}
+footer {
+    /* position: absolute; */
+    font-size: 12px;
+}
+footer .container{
+    position: relative;
+    
+}
+footer .container span {
+    position: absolute;
+    bottom: 5px;
+}
+footer .container span.right {
+    display: flex;
+    align-items: center;
+    right: 0;
+    bottom: 0px;
+}
+.icon_sign {
+    position: absolute;
+    width: 120px;
+    right: 3px;
+    top: 10px;
+}
+input, button {
+    border-radius: 0 !important;
+    border-width: 0 !important;
+}
+.shadow {
+    -webkit-box-shadow: 10px 10px 36px -3px rgba(0,0,0,0.3);
+    -moz-box-shadow: 10px 10px 36px -3px rgba(0,0,0,0.3);
+    box-shadow: 10px 10px 36px -3px rgba(0,0,0,0.3);
+}
+
+@media screen and ( max-height: 500px ) /*and ( max-height: 768px )*/
+{
+    main {
+        height: inherit;
+    }
+
+}
+@media screen and ( max-width: 768px ) 
+{
+    .lang {
+        display: none;
+     }
+     .form-row .col-md-6{
+        margin: 4px 0 !important;
+        padding: 0;
+    }
+}
+@media (max-width: 576px) { 
+   
+    .icon_sign {
+        display: none;
+    }
+    .title{
+        font-size: 40px;
+        line-height: 40px;
+    }
+    .form-row {
+        display: flow-root;
+    }
+    
+    .btn {width: 100%; text-align: left;}
+}

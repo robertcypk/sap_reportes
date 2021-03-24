@@ -1,0 +1,78 @@
+{% set current_url = app.request_stack.getCurrentRequest.pathinfo  %}
+<!-- START CABECERA GENERAL  -->
+ <!-- Top Bar Start -->
+            <div class="topbar">
+
+                <!-- LOGO -->
+                <div class="topbar-left- topbar-logo">
+                    <div class="text-center">
+                        <a href="{{path('admin_dashboard')}}" class="logo"><img src="{{asset('images/sap-logo-svg.svg')}}" alt="" width="74"></a><span style="color:#fff;">Marketing Academy</span>
+                        
+                        
+{# ROLE: {{ app }} #}
+                    </div>
+                </div>
+
+                <!-- Button mobile view to collapse sidebar menu -->
+                <div class="navbar navbar-default" role="navigation">
+                    <div class="container">
+                        <div class="">
+                        
+                            <ul class="nav navbar-nav navbar-right pull-right">
+                                <li class="dropdown">
+                                    <a href="" class="dropdown-toggle profile" data-toggle="dropdown" aria-expanded="true">
+                                      <img src="{{asset('images/avatar-1.jpg')}}" alt="user-img" class="img-circle"> 
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="{{path('logout')}}"><i class="ti-power-off m-r-5"></i> Cerrar sesión</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <!--/.nav-collapse -->
+                    </div>
+                </div>
+            </div>
+            <!-- Top Bar End -->
+            <!-- ========== Left Sidebar Start ========== -->
+            <div class="left side-menu">
+                <div class="sidebar-inner slimscrollleft">
+                    <!--- Divider -->
+                    <div id="sidebar-menu">
+                        <ul>
+                           <li class="text-muted menu-title">Navegación</li>
+                            {# <li >
+                                <a href="{{path('index')}}" class="waves-effect {% if '/listpr' not in current_url %} active {% endif %}"><i class="ti-user"></i> <span> Español </span> </a>
+                            </li>
+                            <li>
+                                <a href="{{path('listpr')}}" class="waves-effect {% if '/listpr' in current_url %} active {% endif %}"><i class="ti-user"></i> <span> Portugués</span></a>
+                            </li> #}
+                            
+
+                             <li class="has_sub">
+                                <a href="#" class="waves-effect {% if '/admin' in current_url %} active {% endif %}"><i class="ti-menu-alt"></i><span>Webinars </span></a>
+                                <ul class="list-unstyled">
+                                    <li class="{% if '/listpr' not in current_url %} active {% endif %}"><a href="{{path('admin_dashboard')}}" >Español</a></li>
+                                    <li class="{% if '/listpr' in current_url %} active {% endif %}"><a href="{{path('listpr')}}" >Portugues</a></li>
+                                   
+                                </ul>
+                            </li>
+
+
+                             <li class="has_sub">
+                                <a href="#" class="waves-effect"><i class="ti-bar-chart"></i><span class="label label-pink pull-right">3</span><span> Reportes </span></a>
+                                <ul class="list-unstyled">
+                                	<li><a href="{{ path('report') }}/2020" target="_blank">Resumen 2020</a></li>
+                                    <li><a href="{{ path('report') }}/2019" target="_blank">Resumen 2019</a></li>
+                                    <li><a href="{{ path('report') }}/2018" target="_blank">Resumen 2018</a></li>
+                                   
+                                </ul>
+                            </li>
+
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+      <!-- Left Sidebar End -->

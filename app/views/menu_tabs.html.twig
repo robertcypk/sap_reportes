@@ -1,0 +1,122 @@
+           <div class="row">
+			   <div class="col-sm-12">
+						<ul class="nav nav-tabs">
+							<li class="">
+								<a href="#home1" data-toggle="tab" aria-expanded="false">
+									<span class="visible-xs"><i class="fa fa-home"></i></span>
+									<span class="hidden-xs">ESPAÑOL</span>
+								</a>
+							</li>
+							<li class="">
+								<a href="#profile1" data-toggle="tab" aria-expanded="true">
+									<span class="visible-xs"><i class="fa fa-user"></i></span>
+									<span class="hidden-xs">PORTUGUÉS</span>
+								</a>
+							</li>
+						</ul>
+						<div class="tab-content">
+							<div class="tab-pane " id="home1">
+								<div class="row">
+									<div class="col-sm-4">
+										<h4 class="title-list">Marketing Academy</h4>
+										<ul class="tab-list">
+											{% for m in menu_list('marketing','es') %}
+											<li><a href="{{ path('report')}}/{{ app.yr }}/es/{{ m.slug }}">{{ m.title }}</a></li>
+											{% endfor %}
+										</ul>
+									</div>
+									<div class="col-sm-3">
+										<h4 class="title-list">Social Monday</h4>
+										<ul class="tab-list">
+											{% for m in menu_list('social','es') %}
+											<li><a href="{{ path('report')}}/{{ app.yr }}/es/{{ m.slug }}">{{ m.title }}</a></li>
+											{% endfor %}
+										</ul>
+									</div>
+									<div class="col-sm-3">
+										<h4 class="title-list">Meet the expert</h4>
+										<ul class="tab-list">
+											{% for m in menu_list('meet','es') %}
+											<li><a href="{{ path('report')}}/{{ app.yr }}/es/{{ m.slug }}">{{ m.title }}</a></li>
+											{% endfor %}
+										</ul>
+									</div>
+
+
+											{#<div class="col-sm-2">
+                                                <h4 class="title-list">2018</h4>
+                                                <ul class="tab-list">
+												
+												<li><a href="http://104.236.53.199/sapreportes/sap/report-cat-date/2018/es/marketing/2018-01-01/2018-12-25/Marketing Academy 2018">Mkt Academy </a></li>
+												<li><a href="http://104.236.53.199/sapreportes/sap/report-cat-date/2018/es/marketing/2018-01-01/2018-03-31/Mkt Academy Q1">Mkt Academy Q1 </a></li>												
+												<li><a href="http://104.236.53.199/sapreportes/sap/report-cat-date/2018/es/marketing/2018-04-01/2018-06-30/Mkt Academy Q2">Mkt Academy Q2 </a></li>
+												
+												
+												<!-- <li><a href="http://104.236.53.199/sapreportes/sap/report-cat-date/2018/es/marketing/2018-07-01/2018-09-30/Mkt Academy Q3">Mkt Academy Q3 </a></li> -->
+												<li><a href="http://104.236.53.199/sapreportes/sap/report-cat-date/2018/es/social/2018-01-01/2018-03-31/Social Mondays Q1">Social Mondays Q1 </a></li>
+												<li><a href="http://104.236.53.199/sapreportes/sap/report-cat-date/2018/es/social/2018-04-01/2018-06-30/Social Mondays Q2 ">Social Mondays Q2 </a></li>
+												<!-- 
+												<li><a href="http://104.236.53.199/sapreportes/sap/report-cat-date/2018/es/social/2017-07-01/2017-09-30/Social Mondays Q3">Social Mondays Q3 </a></li>												
+												-->
+												<li><a href="http://104.236.53.199/sapreportes/sap/report-cat-date/2018/es/meet/2018-01-01/2018-03-31/Meet the Expert Q1">Meet the Expert Q1 </a></li>
+												<li><a href="http://104.236.53.199/sapreportes/sap/report-cat-date/2018/es/meet/2018-04-01/2018-06-30/Meet the Expert Q2">Meet the Expert Q2 </a></li>
+												<!-- <li><a href="http://104.236.53.199/sapreportes/sap/report-cat-date/2018/es/meet/2017-07-01/2017-09-30/Meet the Expert Q3">Meet the Expert Q3 </a></li> -->
+												
+                                                </ul>
+                                            </div>#}
+
+
+								</div>
+							</div>
+							<div class="tab-pane" id="profile1">
+								<div class="row">
+									<div class="col-sm-4">
+										<h4 class="title-list">Marketing Academy</h4>
+										<ul class="tab-list">
+											{% for m in menu_list('marketing','pr') %}
+											<li><a href="{{ path('report')}}/{{ app.yr }}/pr/{{ m.slug }}">{{ m.title }}</a></li>
+											{% endfor %}
+										</ul>
+									</div>
+									<div class="col-sm-3">
+										<h4 class="title-list">Social Monday</h4>
+										<ul class="tab-list">
+											{% for m in menu_list('social','pr') %}
+											<li><a href="{{ path('report')}}/{{ app.yr }}/pr/{{ m.slug }}">{{ m.title }}</a></li>
+											{% endfor %}
+										</ul>
+									</div>
+									<div class="col-sm-3">
+										<h4 class="title-list">Meet the expert</h4>
+										<ul class="tab-list">
+											{% for m in menu_list('meet','pr') %}
+											<li><a href="{{ path('report')}}/{{ app.yr }}/pr/{{ m.slug }}">{{ m.title }}</a></li>
+											{% endfor %}
+										</ul>
+									</div>
+
+										{#<div class="col-sm-2">
+                                                <h4 class="title-list">2018</h4>
+                                                <ul class="tab-list">
+												<li><a href="http://104.236.53.199/sapreportes/sap/report-cat-date/2018/pr/marketing/2018-01-01/2018-12-25/Marketing Academy 2018 ">Mkt Academy </a></li>
+
+												<li><a href="http://104.236.53.199/sapreportes/sap/report-cat-date/2018/pr/marketing/2018-01-01/2018-03-31/Marketing Academy Q1">Mkt Academy Q1 </a></li>
+												<li><a href="http://104.236.53.199/sapreportes/sap/report-cat-date/2018/pr/marketing/2018-04-01/2018-06-30/Mkt Academy Q2">Mkt Academy Q2 </a></li>
+												<!-- <li><a href="http://104.236.53.199/sapreportes/sap/report-cat-date/2018/pr/marketing/2017-07-01/2017-09-30/Mkt Academy Q3">Mkt Academy Q3 </a></li> -->
+
+												<li><a href="http://104.236.53.199/sapreportes/sap/report-cat-date/2018/pr/social/2018-01-01/2018-03-31/Social Mondays Q1">Social Mondays Q1 </a></li>
+												<li><a href="http://104.236.53.199/sapreportes/sap/report-cat-date/2018/pr/social/2018-04-01/2018-06-30/Social Mondays Q2">Social Mondays Q2 </a></li>
+												<!-- <li><a href="http://104.236.53.199/sapreportes/sap/report-cat-date/2018/pr/social/2017-07-01/2017-09-30/Social Mondays Q3">Social Mondays Q3 </a></li> -->
+
+												<li><a href="http://104.236.53.199/sapreportes/sap/report-cat-date/2018/pr/meet/2018-01-01/2018-03-31/Meet the Expert Q1 ">Meet the Expert Q1 </a></li>
+												<li><a href="http://104.236.53.199/sapreportes/sap/report-cat-date/2018/pr/meet/2018-04-01/2018-06-30/Meet the Expert Q2">Meet the Expert Q2 </a></li>
+												<!-- <li><a href="http://104.236.53.199/sapreportes/sap/report-cat-date/2018/pr/meet/2017-07-01/2017-09-30/Meet the Expert Q3">Meet the Expert Q3 </a></li> -->
+                                                </ul>
+                                            </div>#}
+
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>

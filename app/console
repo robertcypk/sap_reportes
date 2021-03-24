@@ -1,0 +1,100 @@
+#!/usr/bin/env php
+<?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+require __DIR__ . '/../vendor/autoload.php';
+
+use Silex\Application;
+use Silex\Provider as Provider;
+use Lokhman\Silex\Console\Console;
+use Lokhman\Silex\Console\Command as Commands;
+use Lokhman\Silex\Console\Provider as Providers;
+//use Symfony\Component\Console\Application;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputOption;
+use Dflydev\Provider\DoctrineOrm\DoctrineOrmServiceProvider;
+use Silex\Provider\DoctrineServiceProvider;
+
+$app = new Application();
+$app->register(new Provider\DoctrineServiceProvider(),array(
+    'db.options'    => array(
+			'driver'    => 'mysqli',
+            'host'      => 'internal-db.s215933.gridserver.com',
+            'dbname'    => 'db215933_projects',
+            'user'      => 'db215933_dev',
+            'password'  => 'Pass**vps16',
+            'charset'   => 'utf8mb4',
+            'driverOptions' => array("set global sql_mode='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION'")
+       )
+));
+/*
+$app->register(new Provider\DoctrineServiceProvider(),array(
+    'db.options'    => array(
+            'driver'    => 'pdo_mysql',
+            'host'      => 'internal-db.s215933.gridserver.com',
+            'dbname'    => 'db215933_selling',
+            'user'      => 'db215933_dev',
+            'password'  => 'Pass**vps16',
+            'charset'   => 'utf8mb4',
+            'driverOptions' => array(1002 => "SET NAMES 'utf8mb4'")
+       )
+));*/
+$app->register(new DoctrineOrmServiceProvider, array(
+    "orm.em.options" => array(
+         "mappings" => array(
+				array(
+				   "type"      => "yml",
+				   "namespace" => "Entity",
+				   "path"      => __DIR__."/doctrine",
+				  ),
+            ),
+			'mysql' => array(
+				'connection' => 'mysql',
+				'mappings' => array(), 
+            )
+         ),
+));
+
+
+$console = new Console($app);
+
+$console->getDefinition()->addOption(new InputOption('--env', '-e', InputOption::VALUE_REQUIRED, 'The Environment name.', 'dev'));
+$console->setDispatcher($app['dispatcher']);
+
+$console->register('sync')->setDefinition(array())
+    ->setDescription('Update app - git')
+    ->setCode(function (InputInterface $input, OutputInterface $output) use ($app) {
+        $out = shell_exec('git pull');
+        shell_exec('rsync -r /home/215933/users/.home/domains/ss.sap-latam.com/sap-social-seeling/ /home/215933/users/.home/domains/ss.sap-latam.com/html/');
+        return $out;
+    });
+    
+$console->setHelperSet(new Symfony\Component\Console\Helper\HelperSet(array(
+    'db' => new \Doctrine\DBAL\Tools\Console\Helper\ConnectionHelper($app["db"]),
+    'em' => new \Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper($app["orm.em"])
+)));
+
+// add console command
+$console->add( new \Doctrine\ORM\Tools\Console\Command\ClearCache\MetadataCommand() );
+$console->add( new \Doctrine\ORM\Tools\Console\Command\ClearCache\QueryCommand() );
+$console->add( new \Doctrine\ORM\Tools\Console\Command\ClearCache\ResultCommand() );
+$console->add( new \Doctrine\ORM\Tools\Console\Command\SchemaTool\CreateCommand() );
+$console->add( new \Doctrine\ORM\Tools\Console\Command\SchemaTool\DropCommand() );
+$console->add( new \Doctrine\ORM\Tools\Console\Command\SchemaTool\UpdateCommand() );
+$console->add( new \Doctrine\ORM\Tools\Console\Command\ConvertDoctrine1SchemaCommand() );
+$console->add( new \Doctrine\ORM\Tools\Console\Command\ConvertMappingCommand() );
+$console->add( new \Doctrine\ORM\Tools\Console\Command\EnsureProductionSettingsCommand() );
+$console->add( new \Doctrine\ORM\Tools\Console\Command\GenerateEntitiesCommand() );
+$console->add( new \Doctrine\ORM\Tools\Console\Command\GenerateProxiesCommand() );
+$console->add( new \Doctrine\ORM\Tools\Console\Command\GenerateRepositoriesCommand() );
+$console->add( new \Doctrine\ORM\Tools\Console\Command\InfoCommand() );
+$console->add( new \Doctrine\ORM\Tools\Console\Command\RunDqlCommand() );
+$console->add( new \Doctrine\ORM\Tools\Console\Command\ValidateSchemaCommand() );
+$console->add( new \Doctrine\DBAL\Tools\Console\Command\ImportCommand() );
+$console->add( new \Doctrine\DBAL\Tools\Console\Command\ReservedWordsCommand() );
+$console->add( new \Doctrine\DBAL\Tools\Console\Command\RunSqlCommand() );
+
+
+$console->run();

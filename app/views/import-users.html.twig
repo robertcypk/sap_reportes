@@ -1,0 +1,105 @@
+{% extends "layouts/master-admin.html.twig" %}
+{% block content %}
+      <!-- ============================================================== -->
+      <!-- Start right Content here -->
+      <!-- ============================================================== -->
+      <div class="content-page">
+        <!-- Start content -->
+        <div class="content">
+          <div class="container">
+
+            <!-- Page-Title -->
+            <div class="row">
+              <div class="col-sm-6">
+                <h2 class="page-title m-b-5 text-uppercase "><strong> Registrar reporte</strong></h2>
+                <p class="text-muted">Importación de datos Excel para reportes de Marketing Academy. <br>Descarga las plantillas <a href="{{  asset('xml/Plantilla_ESP.xlsx') }}" target="_blank" class="text-success">  [Español] </a> y <a href="{{   asset('xml/Plantilla_PORT.xlsx') }}" target="_blank" class="text-success"> [Portugués] </a>.</p>
+              </div>
+            </div>
+
+
+
+                        <div class="row">
+                            <div class="col-sm-12 col-md-9 col-lg-6">
+                                <div class="card-box">
+                                    <form action="{{path('xml_import')}}" enctype='multipart/form-data' method="post" class="form-horizontal" role="form" id="form">
+                                        <div class="form-group m-t-30">
+                                            <label for="titulo" class="col-sm-4 control-label">Título de reporte *</label>
+                                            <div class="col-sm-7">
+                                                <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Título" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="idioma" class="col-sm-4 control-label">Idioma *</label>
+                                            <div class="col-sm-7">
+                                                <select name="idioma" id="idioma" class="form-control" required>
+                                                    <option >Seleccionar</option>
+                                                    <option value="1">Español</option>
+                                                    <option value="2">Portugués</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="categoria" class="col-sm-4 control-label">Categoría *</label>
+                                            <div class="col-sm-7">
+                                                <select name="categoria" id="categoria" class="form-control" required>
+                                                    <option value="">Seleccionar</option>
+                                                    <option value="1">Marketing Academy</option>
+                                                    <option value="2">Meet the Experts</option>
+                                                    <option value="3">Social Monday</option>
+                                                </select>
+                                            </div>
+                                        </div>
+										
+										<div class="form-group " >
+                                            <label for="fecha" class="col-sm-4 control-label">Fecha *</label>
+                                            <div class="col-sm-7">
+                                                <input type="text" class="form-control datepicker-autoclose" id="fecha" name="fecha" placeholder="yyyy-mm-dd" autocomplete="off" required >
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group m-b-30" >
+                                            <label for="reporte" class="col-sm-4 control-label">Reporte Excel*</label>
+                                            <div class="col-sm-7">                                                
+												<input type="file" class="filestyle " id="reporte" name="reporte" data-input="false" data-text="Seleccionar Excel" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" required>
+												<!-- <div class="fileupload btn btn-inverse waves-effect waves-light"> -->
+                                                    <!-- <span><i class="glyphicon glyphicon-upload" style="margin-right: 5px;"></i>Seleccionar</span> -->
+                                                    <!-- <input type="file" class="upload" id="reporte" name="reporte"> -->
+                                                <!-- </div> -->
+                                            </div>
+                                        </div>
+                                         
+                                        <div class="form-group m-b-30">
+                                            <div class="col-sm-offset-4 col-sm-8">
+                                                <button class="btn btn-primary waves-effect waves-light">
+                                                    Cargar registros
+                                                </button>
+                                                <button type="reset" class="btn btn-white waves-effect waves-light m-l-5">
+                                                    Cancelar
+                                                </button>
+                                                
+                                            </div>
+
+                                            <div class="col-sm-offset-4 col-sm-8 m-t-20 ">
+
+                                            {% if msg is defined  %}
+                                    <span class="text-danger">{{ msg }}</span>                                   
+                                    {% endif %}
+</div>
+                                            
+
+                                        </div>
+                                    </form>
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div> <!-- container -->
+                </div> <!-- content -->
+                {% include 'footer.html.twig' %}    
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Right content here -->
+            <!-- ============================================================== -->
+{% endblock %}

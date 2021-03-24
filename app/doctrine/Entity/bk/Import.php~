@@ -1,0 +1,779 @@
+<?php
+
+namespace Entity;
+
+/**
+ * Import
+ */
+class Import
+{
+    /**
+     * @var integer
+     */
+    private $idusr;
+
+    /**
+     * @var string
+     */
+    private $evento;
+
+    /**
+     * @var string
+     */
+    private $tipodeparticipante;
+
+    /**
+     * @var string
+     */
+    private $nombres;
+
+    /**
+     * @var string
+     */
+    private $apellidos;
+
+    /**
+     * @var string
+     */
+    private $empresa;
+
+    /**
+     * @var string
+     */
+    private $pais;
+
+    /**
+     * @var string
+     */
+    private $cargo;
+
+    /**
+     * @var string
+     */
+    private $telefono;
+
+    /**
+     * @var string
+     */
+    private $email;
+
+    /**
+     * @var string
+     */
+    private $talla;
+
+    /**
+     * @var string
+     */
+    private $learnerid;
+
+    /**
+     * @var string
+     */
+    private $fechaderegistro;
+
+
+    /**
+     * Get idusr
+     *
+     * @return integer
+     */
+    public function getIdusr()
+    {
+        return $this->idusr;
+    }
+
+    /**
+     * Set evento
+     *
+     * @param string $evento
+     *
+     * @return Import
+     */
+    public function setEvento($evento)
+    {
+        $this->evento = $evento;
+
+        return $this;
+    }
+
+    /**
+     * Get evento
+     *
+     * @return string
+     */
+    public function getEvento()
+    {
+        return $this->evento;
+    }
+
+    /**
+     * Set tipodeparticipante
+     *
+     * @param string $tipodeparticipante
+     *
+     * @return Import
+     */
+    public function setTipodeparticipante($tipodeparticipante)
+    {
+        $this->tipodeparticipante = $tipodeparticipante;
+
+        return $this;
+    }
+
+    /**
+     * Get tipodeparticipante
+     *
+     * @return string
+     */
+    public function getTipodeparticipante()
+    {
+        return $this->tipodeparticipante;
+    }
+
+    /**
+     * Set nombres
+     *
+     * @param string $nombres
+     *
+     * @return Import
+     */
+    public function setNombres($nombres)
+    {
+        $this->nombres = $nombres;
+
+        return $this;
+    }
+
+    /**
+     * Get nombres
+     *
+     * @return string
+     */
+    public function getNombres()
+    {
+        return $this->nombres;
+    }
+
+    /**
+     * Set apellidos
+     *
+     * @param string $apellidos
+     *
+     * @return Import
+     */
+    public function setApellidos($apellidos)
+    {
+        $this->apellidos = $apellidos;
+
+        return $this;
+    }
+
+    /**
+     * Get apellidos
+     *
+     * @return string
+     */
+    public function getApellidos()
+    {
+        return $this->apellidos;
+    }
+
+    /**
+     * Set empresa
+     *
+     * @param string $empresa
+     *
+     * @return Import
+     */
+    public function setEmpresa($empresa)
+    {
+        $this->empresa = $empresa;
+
+        return $this;
+    }
+
+    /**
+     * Get empresa
+     *
+     * @return string
+     */
+    public function getEmpresa()
+    {
+        return $this->empresa;
+    }
+
+    /**
+     * Set pais
+     *
+     * @param string $pais
+     *
+     * @return Import
+     */
+    public function setPais($pais)
+    {
+        $this->pais = $pais;
+
+        return $this;
+    }
+
+    /**
+     * Get pais
+     *
+     * @return string
+     */
+    public function getPais()
+    {
+        return $this->pais;
+    }
+
+    /**
+     * Set cargo
+     *
+     * @param string $cargo
+     *
+     * @return Import
+     */
+    public function setCargo($cargo)
+    {
+        $this->cargo = $cargo;
+
+        return $this;
+    }
+
+    /**
+     * Get cargo
+     *
+     * @return string
+     */
+    public function getCargo()
+    {
+        return $this->cargo;
+    }
+
+    /**
+     * Set telefono
+     *
+     * @param string $telefono
+     *
+     * @return Import
+     */
+    public function setTelefono($telefono)
+    {
+        $this->telefono = $telefono;
+
+        return $this;
+    }
+
+    /**
+     * Get telefono
+     *
+     * @return string
+     */
+    public function getTelefono()
+    {
+        return $this->telefono;
+    }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     *
+     * @return Import
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Set talla
+     *
+     * @param string $talla
+     *
+     * @return Import
+     */
+    public function setTalla($talla)
+    {
+        $this->talla = $talla;
+
+        return $this;
+    }
+
+    /**
+     * Get talla
+     *
+     * @return string
+     */
+    public function getTalla()
+    {
+        return $this->talla;
+    }
+
+    /**
+     * Set learnerid
+     *
+     * @param string $learnerid
+     *
+     * @return Import
+     */
+    public function setLearnerid($learnerid)
+    {
+        $this->learnerid = $learnerid;
+
+        return $this;
+    }
+
+    /**
+     * Get learnerid
+     *
+     * @return string
+     */
+    public function getLearnerid()
+    {
+        return $this->learnerid;
+    }
+
+    /**
+     * Set fechaderegistro
+     *
+     * @param string $fechaderegistro
+     *
+     * @return Import
+     */
+    public function setFechaderegistro($fechaderegistro)
+    {
+        $this->fechaderegistro = $fechaderegistro;
+
+        return $this;
+    }
+
+    /**
+     * Get fechaderegistro
+     *
+     * @return string
+     */
+    public function getFechaderegistro()
+    {
+        return $this->fechaderegistro;
+    }
+    /**
+     * @var string
+     */
+    private $country;
+
+    /**
+     * @var string
+     */
+    private $hporganization;
+
+    /**
+     * @var string
+     */
+    private $headquartersname;
+
+    /**
+     * @var string
+     */
+    private $firstname;
+
+    /**
+     * @var string
+     */
+    private $lastname;
+
+    /**
+     * @var string
+     */
+    private $hpelearnerid;
+
+    /**
+     * @var string
+     */
+    private $city;
+
+    /**
+     * @var string
+     */
+    private $activityname;
+
+    /**
+     * @var string
+     */
+    private $dateacquired;
+
+    /**
+     * @var string
+     */
+    private $emails;
+
+    /**
+     * @var string
+     */
+    private $idioma;
+
+
+    /**
+     * Set country
+     *
+     * @param string $country
+     *
+     * @return Import
+     */
+    public function setCountry($country)
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    /**
+     * Get country
+     *
+     * @return string
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    /**
+     * Set hporganization
+     *
+     * @param string $hporganization
+     *
+     * @return Import
+     */
+    public function setHporganization($hporganization)
+    {
+        $this->hporganization = $hporganization;
+
+        return $this;
+    }
+
+    /**
+     * Get hporganization
+     *
+     * @return string
+     */
+    public function getHporganization()
+    {
+        return $this->hporganization;
+    }
+
+    /**
+     * Set headquartersname
+     *
+     * @param string $headquartersname
+     *
+     * @return Import
+     */
+    public function setHeadquartersname($headquartersname)
+    {
+        $this->headquartersname = $headquartersname;
+
+        return $this;
+    }
+
+    /**
+     * Get headquartersname
+     *
+     * @return string
+     */
+    public function getHeadquartersname()
+    {
+        return $this->headquartersname;
+    }
+
+    /**
+     * Set firstname
+     *
+     * @param string $firstname
+     *
+     * @return Import
+     */
+    public function setFirstname($firstname)
+    {
+        $this->firstname = $firstname;
+
+        return $this;
+    }
+
+    /**
+     * Get firstname
+     *
+     * @return string
+     */
+    public function getFirstname()
+    {
+        return $this->firstname;
+    }
+
+    /**
+     * Set lastname
+     *
+     * @param string $lastname
+     *
+     * @return Import
+     */
+    public function setLastname($lastname)
+    {
+        $this->lastname = $lastname;
+
+        return $this;
+    }
+
+    /**
+     * Get lastname
+     *
+     * @return string
+     */
+    public function getLastname()
+    {
+        return $this->lastname;
+    }
+
+    /**
+     * Set hpelearnerid
+     *
+     * @param string $hpelearnerid
+     *
+     * @return Import
+     */
+    public function setHpelearnerid($hpelearnerid)
+    {
+        $this->hpelearnerid = $hpelearnerid;
+
+        return $this;
+    }
+
+    /**
+     * Get hpelearnerid
+     *
+     * @return string
+     */
+    public function getHpelearnerid()
+    {
+        return $this->hpelearnerid;
+    }
+
+    /**
+     * Set city
+     *
+     * @param string $city
+     *
+     * @return Import
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    /**
+     * Get city
+     *
+     * @return string
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * Set activityname
+     *
+     * @param string $activityname
+     *
+     * @return Import
+     */
+    public function setActivityname($activityname)
+    {
+        $this->activityname = $activityname;
+
+        return $this;
+    }
+
+    /**
+     * Get activityname
+     *
+     * @return string
+     */
+    public function getActivityname()
+    {
+        return $this->activityname;
+    }
+
+    /**
+     * Set dateacquired
+     *
+     * @param string $dateacquired
+     *
+     * @return Import
+     */
+    public function setDateacquired($dateacquired)
+    {
+        $this->dateacquired = $dateacquired;
+
+        return $this;
+    }
+
+    /**
+     * Get dateacquired
+     *
+     * @return string
+     */
+    public function getDateacquired()
+    {
+        return $this->dateacquired;
+    }
+
+    /**
+     * Set emails
+     *
+     * @param string $emails
+     *
+     * @return Import
+     */
+    public function setEmails($emails)
+    {
+        $this->emails = $emails;
+
+        return $this;
+    }
+
+    /**
+     * Get emails
+     *
+     * @return string
+     */
+    public function getEmails()
+    {
+        return $this->emails;
+    }
+
+    /**
+     * Set idioma
+     *
+     * @param string $idioma
+     *
+     * @return Import
+     */
+    public function setIdioma($idioma)
+    {
+        $this->idioma = $idioma;
+
+        return $this;
+    }
+
+    /**
+     * Get idioma
+     *
+     * @return string
+     */
+    public function getIdioma()
+    {
+        return $this->idioma;
+    }
+    /**
+     * @var string
+     */
+    private $activityname2;
+
+    /**
+     * @var string
+     */
+    private $activityname3;
+
+    /**
+     * @var string
+     */
+    private $activityname4;
+
+
+    /**
+     * Set activityname2
+     *
+     * @param string $activityname2
+     *
+     * @return Import
+     */
+    public function setActivityname2($activityname2)
+    {
+        $this->activityname2 = $activityname2;
+
+        return $this;
+    }
+
+    /**
+     * Get activityname2
+     *
+     * @return string
+     */
+    public function getActivityname2()
+    {
+        return $this->activityname2;
+    }
+
+    /**
+     * Set activityname3
+     *
+     * @param string $activityname3
+     *
+     * @return Import
+     */
+    public function setActivityname3($activityname3)
+    {
+        $this->activityname3 = $activityname3;
+
+        return $this;
+    }
+
+    /**
+     * Get activityname3
+     *
+     * @return string
+     */
+    public function getActivityname3()
+    {
+        return $this->activityname3;
+    }
+
+    /**
+     * Set activityname4
+     *
+     * @param string $activityname4
+     *
+     * @return Import
+     */
+    public function setActivityname4($activityname4)
+    {
+        $this->activityname4 = $activityname4;
+
+        return $this;
+    }
+
+    /**
+     * Get activityname4
+     *
+     * @return string
+     */
+    public function getActivityname4()
+    {
+        return $this->activityname4;
+    }
+}

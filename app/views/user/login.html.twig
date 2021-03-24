@@ -1,0 +1,166 @@
+
+	
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>SAP | Portal de Certificados</title>
+
+     <!-- Favicons -->
+    {# <link rel="apple-touch-icon" href="/docs/4.5/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+    <link rel="icon" href="/docs/4.5/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="/docs/4.5/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+    <link rel="manifest" href="/docs/4.5/assets/img/favicons/manifest.json">
+    <link rel="mask-icon" href="/docs/4.5/assets/img/favicons/safari-pinned-tab.svg" color="#563d7c">
+    <link rel="icon" href="/docs/4.5/assets/img/favicons/favicon.ico">
+    <meta name="msapplication-config" content="/docs/4.5/assets/img/favicons/browserconfig.xml">
+    <meta name="theme-color" content="#563d7c"> #}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('public/v2/css/bootstrap.min.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('public/v2/css/themify.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('public/v2/styles.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('public/v2/login.css') }}" type="text/css" />
+    {# <link rel="stylesheet" href="{{ asset('public/v2/sweet-alert/dist/sweetalert2.min.css') }}" type="text/css" /> 
+    <script type="text/javascript" src="{{ asset('public/v2/js/modernizr.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('public/v2/sweet-alert/dist/sweetalert2.all.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('public/v2/js/jquery.validate.min.js') }}"></script> #}
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2201948-49"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-2201948-49');
+    </script>
+
+</head>
+
+<body>
+
+    <header>
+       
+        <div class="navbar navbar-dark bg-dark- box-shadow bg-header">
+            <div class="container d-flex justify-content-between" style="position: relative">
+                <a href="#" class="navbar-brand d-flex align-items-center">
+                    <img class="mr-3" src="{{ asset('public/v2/img/sap.png') }}" width="100" alt="SAP">
+                    <!-- <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg> -->
+                     <strong>{{'Portal de Certificados'|trans }}  </strong> 
+
+                </a>
+                {# <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            
+          </button> #}
+          {% if app['lang'] == '2' %}
+          <a href="{{path('index')}}?lang=es" class="lang mr-5">Versión en español</a>
+          {% else %}
+          <a href="{{path('index')}}?lang=pr" class="lang mr-5">Versão em português</a>
+          {% endif %}
+          <img src="{{ asset('public/v2/img/sign.png') }}" class ="icon_sign" alt="SAP Graduate"  >
+            </div>
+        </div>
+    </header>
+
+    <main role="main">
+
+        <section class="jumbotron m-0 bg-home text-center-">
+            <div class="container">
+                {# <div class="q1">
+                    <div class="">
+                        <a href="#" class="btn btn-primary q1_rspta_1">SAP Marketing Academy</a>
+                        <a href="#" class="btn btn-secondary q1_rspta_2">Recuerde que nuestros certificados son reconocidos globalmente y le darán una gran ventaja competitiva.</a>
+                    </div>
+
+                </div>
+
+
+                <video id="mi_video_question" class="video-js" preload="auto" width="1110" height="624" poster="{{ asset('public/v2/desk1.jpg') }}" data-setup='{ "controls": false, "preload": "auto" }'>
+                  <source src="video/intro.mp4" type="video/mp4" />
+                  <source src="MY_VIDEO.webm" type="video/webm" />
+                    <p class="vjs-no-js">
+                      To view this video please enable JavaScript, and consider upgrading to a
+                      web browser that
+                      <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+                    </p>
+                  </video> #}
+
+               
+                <div class="col-md-6 col-sm-8">
+                <h1 class="jumbotron-heading mt-3 text-yellow- title">SAP Marketing Academy</h1>
+                <p class="lead text-muted-">{{traduccion('Gracias por su participación. </br>Recuerde que nuestros certificados son reconocidos globalmente y le darán una gran ventaja competitiva.', 'Obrigado pela sua participação. </br>Lembre-se de que nossos certificados são reconhecidos globalmente e oferecerão uma grande vantagem competitiva.')| raw}} </p>
+                <p class="lead text-muted- text-cyan">{{traduccion('Ingrese su email para acceder a su certificado', 'Digite seu email para acessar seu certificado') | raw }}</p>
+                
+                    <form method="post" action="{{ path('accessvalidation') }}" enctype="application/x-www-form-urlencoded">           
+                <div class="form-row">
+                
+                    <div class="col-md-6 col-sm-12 m-0 p-0">
+                    <input type="text" name="email" class="form-control form-control-lg shadow" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="{{traduccion('usuario@email.com','user@email.com')}}" required >
+                    </div>
+                    <div class="col-md-6 col-sm-12 m-0">
+                    {# <input type="text" class="form-control" placeholder="Last name"> #}
+                    <button class="btn btn-lg btn-primary px-4 bg_yellow text-dark- shadow" type="submit">{{traduccion('Ingresar','Acessar')}} <i class="ti-control-play pr-1 " style="vertical-align: inherit;"></i></button>
+                    </div>
+                    
+                </div>
+                </form>
+
+
+
+                </div>
+            </div>
+        </section>
+
+       
+
+    </main>
+
+    <footer class="text-muted">
+        <div class="container mt-3-">
+            {# <p class="float-right">
+                <a href="#">Subir</a>
+            </p> #}
+            <!-- <p>Album example is &copy; Bootstrap, but please download and customize it for yourself!</p> -->
+            <span class="text-black">© 2020  {{traduccion('SAP Latinoamérica','SAP América latina')}}</span>
+            <span class="text-white right">
+
+{{traduccion('Encuéntranos en','Encontrar-nos no')}}
+<a href="https://www.facebook.com/SAPlatinoamerica" target="_blank"><img src="{{ asset('public/v2/img/icons/facebook.png') }}" width="24" class ="m-1"   > </a>
+<a href="https://www.linkedin.com/company/sap" target="_blank"><img src="{{ asset('public/v2/img/icons/linkedin.png') }}" width="24" class ="m-1"   > </a>
+<a href="https://twitter.com/SAPLatinAmerica" target="_blank"><img src="{{ asset('public/v2/img/icons/twitter.png') }}" width="24" class ="m-1"   > </a>
+ </span>
+        </div>
+    </footer>
+
+
+
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>
+        window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')
+    </script>
+    <!--  <script src="../../assets/js/vendor/popper.min.js"></script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+<script src="../../assets/js/vendor/holder.min.js"></script> -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/fontawesome.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+       
+    </script>
+
+</body>
+</body>
+
+</html>

@@ -1,0 +1,113 @@
+<?php
+
+namespace Entity;
+
+/**
+ * Battles
+ */
+class Battles
+{
+    /**
+     * @var integer
+     */
+    private $idbattle;
+
+    /**
+     * @var string
+     */
+    private $idnegocio;
+
+    /**
+     * @var string
+     */
+    private $nombredecliente;
+
+    /**
+     * @var string
+     */
+    private $idusr;
+
+
+    /**
+     * Get idbattle
+     *
+     * @return integer
+     */
+    public function getIdbattle()
+    {
+        return $this->idbattle;
+    }
+
+    /**
+     * Set idnegocio
+     *
+     * @param string $idnegocio
+     *
+     * @return Battles
+     */
+    public function setIdnegocio($idnegocio)
+    {
+        $this->idnegocio = $idnegocio;
+
+        return $this;
+    }
+
+    /**
+     * Get idnegocio
+     *
+     * @return string
+     */
+    public function getIdnegocio()
+    {
+        return $this->idnegocio;
+    }
+
+    /**
+     * Set nombredecliente
+     *
+     * @param string $nombredecliente
+     *
+     * @return Battles
+     */
+    public function setNombredecliente($nombredecliente)
+    {
+        $this->nombredecliente = $nombredecliente;
+
+        return $this;
+    }
+
+    /**
+     * Get nombredecliente
+     *
+     * @return string
+     */
+    public function getNombredecliente()
+    {
+        return $this->nombredecliente;
+    }
+
+    /**
+     * Set idusr
+     *
+     * @param string $idusr
+     *
+     * @return Battles
+     */
+    public function setIdusr($idusr)
+    {
+        $this->idusr = $idusr;
+
+        return $this;
+    }
+
+    /**
+     * Get idusr
+     *
+     * @return string
+     */
+    public function getIdusr()
+    {
+        return $this->idusr;
+    }
+}
+

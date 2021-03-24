@@ -1,0 +1,10 @@
+{% extends "layouts/master-admin.html.twig" %}
+{% block content %}
+        {% if is_granted('ROLE_ADMIN') %}
+            {% include 'admin.html.twig' %}
+        {% elseif is_granted('ROLE_SUPPORT') %}
+            {% include 'admin.html.twig' %}
+        {% else %}
+            {% include 'user.html.twig' %}
+        {% endif %}
+{% endblock %}
